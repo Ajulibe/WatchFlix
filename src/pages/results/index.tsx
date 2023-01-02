@@ -9,10 +9,8 @@ import React, {
   useRef,
   useState
 } from "react";
-import { Wrapper } from "./style";
 import { getMovies } from "api";
 import debounce from "lodash/debounce";
-import { ModalForm } from "components/modal";
 import { Spinner } from "components/spinner";
 import type { Results } from "types";
 import { useSearchParams } from "react-router-dom";
@@ -21,19 +19,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 // todo: add a react alert message at all the try and catch places
 
 // code-splitting for performance gains
-const Content = lazy(async () => import("../content"));
+const Content = lazy(async () => import("components/content"));
 
 export const SearchResults: FC = () => {
   const [searchTerm, setSearchTerm] = useState("christmas");
   const [movies, setMovies] = useState<Results[]>([]);
-  const [isVisible, setIsVisible] = useState(false);
-  const [modalData, setModalData] = useState<Results>([]);
   const [emissionType, setEmissionType] = useState<string>("movie");
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useRef<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
   const queryValue = searchParams.get("query");
   const debounceDelay = useRef(300);
 
@@ -122,36 +118,17 @@ export const SearchResults: FC = () => {
     setSearchTerm(term);
   }, []);
 
-  // Show modal and pass data to be shown in modal
-  const showModal = (item: Results): void => {
-    console.log(item, "type this correctly-------- modal data");
-    setModalData(item);
-    setIsVisible(true);
-  };
-
   return (
-    <>
-      {/* <ModalForm
-        isVisible={isVisible}
-        onClick={() => {
-          setIsVisible(false);
-        }}
-        modalData={modalData}
-      /> */}
-      <Wrapper>
-        <Suspense fallback={<Spinner />}>
-          <Content
-            selectEmission={selectEmission}
-            handleChange={handleChange}
-            data-testid="content"
-            isLoading={isLoading}
-            data={movies}
-            showModal={showModal}
-            isMounted={isMounted}
-          />
-        </Suspense>
-      </Wrapper>
-    </>
+    <Suspense fallback={<Spinner />}>
+      <Content
+        selectEmission={selectEmission}
+        handleChange={handleChange}
+        data-testid="content"
+        isLoading={isLoading}
+        data={movies}
+        isMounted={isMounted}
+      />
+    </Suspense>
   );
 };
 

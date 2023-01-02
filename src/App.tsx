@@ -1,7 +1,8 @@
-import { AppLayout } from "./components/applayout";
+import { AppLayout } from "./layout";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { SearchResults } from "components/results";
+import { SearchResults } from "pages/results";
+import { Details } from "pages/details";
 
 const App: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="results" element={<SearchResults />} />
+          <Route path="results/:movieId" element={<Details />} />
         </Route>
       </Routes>
     </Router>

@@ -75,9 +75,3 @@ export const Empty = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-
-export const VideoWrapper = styled.div`
-  height: 60vh;
-  overflow: hidden;
-  margin-top: 6rem;
-`;

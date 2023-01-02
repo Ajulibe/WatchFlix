@@ -1,24 +1,16 @@
 /*eslint-disable*/
 import React, { ChangeEvent, MutableRefObject } from "react";
-import {
-  Empty,
-  FlexContainer,
-  MovieWrapper,
-  Title,
-  CurlyTitle,
-  TitleWrapper,
-  VideoWrapper
-} from "./style";
+import { Empty, FlexContainer, MovieWrapper, Title, CurlyTitle, TitleWrapper } from "./style";
 import { CardWidget } from "components/card";
 import { Spinner } from "components/spinner";
 import type { Results } from "types";
 import { SearchHeader } from "components/searchInput";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   isLoading: boolean;
   data: Results[];
   isMounted: MutableRefObject<boolean>;
-  showModal: (i: Results) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   selectEmission: (e: React.FormEvent<HTMLSelectElement>) => void;
 }
@@ -27,10 +19,10 @@ const Content: React.FC<IProps> = ({
   isLoading,
   data,
   isMounted,
-  showModal,
   handleChange,
   selectEmission
 }) => {
+  const navigate = useNavigate();
   return (
     <FlexContainer>
       <TitleWrapper>
@@ -46,7 +38,7 @@ const Content: React.FC<IProps> = ({
                 key={item.id}
                 item={item}
                 onClick={() => {
-                  showModal(item);
+                  navigate(`/results/${item.id}`, { state: item });
                 }}
               />
             );
