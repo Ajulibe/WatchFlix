@@ -10,7 +10,7 @@ import React, {
   useState
 } from "react";
 import { Wrapper } from "./style";
-import { Api } from "api";
+import { getMovies } from "api";
 import debounce from "lodash/debounce";
 import { ModalForm } from "components/modal";
 import { Spinner } from "components/spinner";
@@ -24,10 +24,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 const Content = lazy(async () => import("../content"));
 
 export const SearchResults: FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("christmas");
   const [movies, setMovies] = useState<Results[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [modalData, setModalData] = useState<Results>([]);
+  const [emissionType, setEmissionType] = useState<string>("movie");
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useRef<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,11 +39,13 @@ export const SearchResults: FC = () => {
 
   const debouncedFetchMovies = useCallback(
     debounce(async (searchTerm: string, cb) => {
-      if (searchTerm !== "" && searchTerm.length > 0) {
-        console.log("called fetch movies");
-        try {
-          await fetchMovies(searchTerm, cb);
-        } catch (error) {}
+      console.log("called by first render");
+      console.log("called fetch movies");
+      try {
+        await fetchMovies(searchTerm, cb);
+      } catch (error) {
+      } finally {
+        setIsLoading(false);
       }
     }, debounceDelay.current),
     []
@@ -51,7 +54,7 @@ export const SearchResults: FC = () => {
   const fetchMovies = useCallback(
     async (searchTerm: string, callback: (r: Results[]) => void): Promise<void> => {
       try {
-        const res: any = await Api.getMovies(searchTerm);
+        const res: any = await getMovies(emissionType, searchTerm);
         const { results } = res.data;
         isMounted.current = true;
         callback(results);
@@ -61,7 +64,6 @@ export const SearchResults: FC = () => {
   );
   // listen to the url Location and fetch movies everytime it changes
   useEffect(() => {
-    console.log("called at location");
     //@ts-ignore
     //detect whren the back button is pressed to fetch new movies
     window.addEventListener("popstate", function (event) {
@@ -75,10 +77,23 @@ export const SearchResults: FC = () => {
     });
   }, [location]);
 
+  const selectEmission = (e: React.FormEvent<HTMLSelectElement>) => {
+    setEmissionType((e.target as HTMLInputElement).value);
+  };
+
   useLayoutEffect(() => {
+    // if there is no searched item, remove param from url
+    if (!searchTerm) {
+      setTimeout(() => {
+        searchParams.delete("query");
+        setSearchParams(searchParams);
+      }, 200);
+    }
+
     if (isMounted.current === false) {
       // this block only runs on the first render
       if (queryValue) {
+        // if there is a query param call the api using that
         navigate({
           pathname: "/results",
           search: `?query=${queryValue}`
@@ -86,28 +101,21 @@ export const SearchResults: FC = () => {
         setIsLoading(true);
         debouncedFetchMovies(queryValue, (res: Results[]) => {
           setMovies(res);
-          setIsLoading(false);
+        });
+      } else {
+        debouncedFetchMovies(searchTerm, (res: Results[]) => {
+          setMovies(res);
         });
       }
     } else {
       // this run on every other render
       setIsLoading(true);
       debouncedFetchMovies(searchTerm, (res: Results[]) => {
-        console.log("checking calls");
         setMovies(res);
-        setIsLoading(false);
-        console.log(res, "results as at here");
       });
       setSearchParams(`?query=${searchTerm}`);
     }
-  }, [searchTerm]);
-
-  //stop loading if there is no search query
-  useEffect(() => {
-    if (searchTerm === "") {
-      setIsLoading(false);
-    }
-  }, [searchTerm]);
+  }, [searchTerm, emissionType]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     const term = e.target.value;
@@ -133,6 +141,7 @@ export const SearchResults: FC = () => {
       <Wrapper>
         <Suspense fallback={<Spinner />}>
           <Content
+            selectEmission={selectEmission}
             handleChange={handleChange}
             data-testid="content"
             isLoading={isLoading}

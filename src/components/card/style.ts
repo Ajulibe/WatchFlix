@@ -19,7 +19,7 @@ export const Card = styled.div`
     cursor: pointer;
 
     img {
-      transform: scale(1.2);
+      transform: scale(1.05);
       filter: grayscale(40%);
     }
   }
@@ -53,7 +53,7 @@ export const CardPreview = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.5s;
+    transition: all 0.5s ease-in;
   }
 
   .no-image {
@@ -63,6 +63,19 @@ export const CardPreview = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .placeholder__image {
+    width: 100%;
+    height: 100%;
+
+    div {
+      background-color: ${COLORS.white200};
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 

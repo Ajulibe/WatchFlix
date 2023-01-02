@@ -1,34 +1,25 @@
 import axios from "axios";
 import config from "config";
 
-class Request {
-  //  Fetch Movies from api
-  public async getMovies(searchTerm: string): Promise<unknown> {
-    let response;
-    try {
+export async function getMovies(
+  emissionType: string,
+  searchTerm: string = "christmas"
+): Promise<unknown> {
+  let response;
+  try {
+    // get recent movie lists if there is no search term
+    if (!searchTerm) {
+      response = await axios.get(
+        `${config.API_BASE_URL}/trending/${emissionType}/week?api_key=${config.API_KEY}`
+      );
+    } else {
       response = await axios.get(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${config.API_BASE_URL}/search/movie?api_key=${config.API_KEY}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
+        `${config.API_BASE_URL}/search/${emissionType}?api_key=${config.API_KEY}&language=en-US&query=${searchTerm}&sort_by=popularity.desc&page=1&timezone=America/New_York&include_null_first_air_dates=false`
       );
-    } catch (error) {
-      response = error;
     }
-    return response;
+  } catch (error) {
+    response = error;
   }
-
-  // Fetch Recent Movies from api
-  public async getRecentMovies(): Promise<unknown> {
-    let response;
-    try {
-      response = await axios.get(
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${config.API_BASE_URL}/trending/movie/week?api_key=${config.API_KEY}`
-      );
-    } catch (error) {
-      response = error;
-    }
-    return response;
-  }
+  return response;
 }
-
-export const Api: Request = new Request();

@@ -12,7 +12,7 @@ import {
 import { CardWidget } from "components/card";
 import { Spinner } from "components/spinner";
 import type { Results } from "types";
-import { SearchBar } from "components/searchInput";
+import { SearchHeader } from "components/searchInput";
 
 interface IProps {
   isLoading: boolean;
@@ -20,29 +20,24 @@ interface IProps {
   isMounted: MutableRefObject<boolean>;
   showModal: (i: Results) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  selectEmission: (e: React.FormEvent<HTMLSelectElement>) => void;
 }
 
-const Video = () => {
-  const src =
-    "https://res.cloudinary.com/ajulibe/video/upload/v1672667722/Holiday_-_140483_u6gbba.mp4";
-  return (
-    <VideoWrapper>
-      <video controls width="100%" autoPlay muted playsInline>
-        <source src={src} type="video/mp4" />
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-    </VideoWrapper>
-  );
-};
-
-const Content: React.FC<IProps> = ({ isLoading, data, isMounted, showModal, handleChange }) => {
+const Content: React.FC<IProps> = ({
+  isLoading,
+  data,
+  isMounted,
+  showModal,
+  handleChange,
+  selectEmission
+}) => {
   return (
     <FlexContainer>
       <TitleWrapper>
         <CurlyTitle>watch</CurlyTitle>
         <Title>Flix</Title>
       </TitleWrapper>
-      <SearchBar onChange={handleChange} />
+      <SearchHeader onChange={handleChange} selectEmission={selectEmission} />
       <MovieWrapper>
         {!isLoading &&
           data.map((item) => {
@@ -60,9 +55,6 @@ const Content: React.FC<IProps> = ({ isLoading, data, isMounted, showModal, hand
         {data.length === 0 && !isLoading && isMounted.current ? (
           <Empty data-testid="error-message">NO RESULTS FOUND</Empty>
         ) : null}
-
-        {!isMounted.current && !isLoading && data.length === 0 ? <Video /> : null}
-
         {isLoading && <Spinner />}
       </MovieWrapper>
     </FlexContainer>

@@ -1,9 +1,32 @@
 import styled from "@emotion/styled";
 import { COLORS } from "utils/colors";
 
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+
+  select {
+    width: 13%;
+    height: 44px;
+    background: ${COLORS.lightBlack};
+    color: ${COLORS.white};
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-right: 16px solid transparent;
+
+    :focus {
+      outline: none;
+    }
+  }
+`;
+
 export const InputWrapper = styled.div`
   position: relative;
   margin-bottom: 4rem;
+  width: 85%;
 
   img {
     position: absolute;
