@@ -53,6 +53,7 @@ export const SearchResults: FC = () => {
       try {
         const res: any = await Api.getMovies(searchTerm);
         const { results } = res.data;
+        isMounted.current = true;
         callback(results);
       } catch (error) {}
     },
@@ -88,7 +89,6 @@ export const SearchResults: FC = () => {
           setIsLoading(false);
         });
       }
-      isMounted.current = true;
     } else {
       // this run on every other render
       setIsLoading(true);

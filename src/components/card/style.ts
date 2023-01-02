@@ -5,7 +5,6 @@ export const Card = styled.div`
   width: 28rem;
   height: 34.8rem;
   box-sizing: border-box;
-  /* box-shadow: 1px 2px 8px 2px ${COLORS.cardShadow}; */
   display: flex;
   flex-direction: column;
   color: ${COLORS.white};
@@ -15,7 +14,14 @@ export const Card = styled.div`
   background-color: ${COLORS.cardBg};
 
   &:hover {
-    /* border: 1px solid ${COLORS.mininalGrey}; */
+    border: 1px solid ${COLORS.cardHover};
+    box-shadow: var(#0000, 0 0 #0000), var(#0000, 0 0 #0000), var(#0000);
+    cursor: pointer;
+
+    img {
+      transform: scale(1.2);
+      filter: grayscale(40%);
+    }
   }
 
   @media only screen and (max-width: 651px) {
@@ -47,6 +53,7 @@ export const CardPreview = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.5s;
   }
 
   .no-image {

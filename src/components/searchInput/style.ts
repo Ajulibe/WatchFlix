@@ -3,7 +3,7 @@ import { COLORS } from "utils/colors";
 
 export const InputWrapper = styled.div`
   position: relative;
-  margin-top: 3rem;
+  margin-bottom: 4rem;
 
   img {
     position: absolute;

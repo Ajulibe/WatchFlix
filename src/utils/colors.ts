@@ -11,5 +11,6 @@ export enum COLORS {
   black200 = "rgba(0, 0, 0, 0.2)",
   white200 = "rgba(255, 255, 255, 0.3)",
   mininalGrey = "#a8b3cf33",
-  cardBg = "#1c1f26"
+  cardBg = "#1c1f26",
+  cardHover = "#a8b3cf66"
 }

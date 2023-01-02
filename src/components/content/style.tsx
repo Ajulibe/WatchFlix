@@ -39,10 +39,11 @@ export const FlexContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-weight: 800;
-  font-size: 2.4rem;
+  font-weight: 600;
+  font-size: 2rem;
   color: ${COLORS.white};
-  text-shadow: 2px 8px 6px ${COLORS.black200}, 0px -5px 35px ${COLORS.white200};
+  background-color: ${COLORS.cardBg};
+  padding: 0 8px;
   @media only screen and (max-width: 991px) {
     align-self: center;
   }
@@ -52,7 +53,7 @@ export const CurlyTitle = styled.h1`
   font-family: "Spirax", cursive;
   font-weight: 800;
   font-size: 2rem;
-  margin-right: 8px;
+  margin-right: 4px;
   color: ${COLORS.primary};
   @media only screen and (max-width: 991px) {
     align-self: center;
@@ -62,6 +63,7 @@ export const CurlyTitle = styled.h1`
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin: 1rem 0;
 `;
 
 export const Empty = styled.div`
@@ -72,4 +74,10 @@ export const Empty = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+export const VideoWrapper = styled.div`
+  height: 60vh;
+  overflow: hidden;
+  margin-top: 6rem;
 `;
