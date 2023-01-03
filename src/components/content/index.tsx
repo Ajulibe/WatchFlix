@@ -13,6 +13,7 @@ interface IProps {
   isMounted: MutableRefObject<boolean>;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   selectEmission: (e: React.FormEvent<HTMLSelectElement>) => void;
+  emissionType: string;
 }
 
 const Content: React.FC<IProps> = ({
@@ -20,7 +21,8 @@ const Content: React.FC<IProps> = ({
   data,
   isMounted,
   handleChange,
-  selectEmission
+  selectEmission,
+  emissionType
 }) => {
   const navigate = useNavigate();
   return (
@@ -38,7 +40,7 @@ const Content: React.FC<IProps> = ({
                 key={item.id}
                 item={item}
                 onClick={() => {
-                  navigate(`/results/${item.id}`, { state: item });
+                  navigate(`/results/${item.id}`, { state: { item, emissionType } });
                 }}
               />
             );

@@ -23,3 +23,16 @@ export async function getMovies(
   }
   return response;
 }
+
+export async function getCast(emissionType: string, movieId: number): Promise<unknown> {
+  let response;
+  try {
+    response = await axios.get(
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      `${config.API_BASE_URL}/${emissionType}/${movieId}/credits?api_key=${config.API_KEY}&language=en-US`
+    );
+  } catch (error) {
+    response = error;
+  }
+  return response;
+}

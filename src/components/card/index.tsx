@@ -3,6 +3,7 @@ import { Card, CardPreview, MovieTitle } from "./style";
 import config from "config";
 import type { Results } from "types";
 import { generatorFn } from "utils/gradient-generator";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface IProps {
   item: Results;
@@ -14,11 +15,11 @@ export const CardWidget: React.FC<IProps> = ({ item, onClick }) => {
     <Card key={item.id} onClick={onClick} className="card" data-testid="card">
       <CardPreview>
         {item.poster_path ? (
-          <img
+          <LazyLoadImage
             title="poster picture"
             loading="lazy"
-            width="100"
-            height="100"
+            effect="blur"
+            placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.poster_path}`}
             src={`${config.IMAGE_BASE_URL}${item?.poster_path}`}
             alt={item.original_title}
           />

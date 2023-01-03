@@ -4,7 +4,7 @@ import { COLORS } from "utils/colors";
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  padding: 20px 23px 28px 27px;
+  padding: 40px 23px 28px 27px;
   box-sizing: border-box;
   color: ${COLORS.white}
   animation: zoomOut 0.2s ease-in;
@@ -53,13 +53,48 @@ export const ModalDetails = styled.div`
   font-weight: 300;
   line-height: 3rem;
   margin-top: 3.4rem;
-  width: 50%;
+  width: 80%;
   padding: 0 4rem;
   text-align: justify;
   font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
 
+  .header__container {
+    width: 50%;
+  }
+
   .header {
     font-size: 2.4rem;
+  }
+
+  .cast__header {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 180px);
+    grid-gap: 10px;
+    width: 100%;
+  }
+
+  .movie__cast {
+    color: white;
+    display: flex;
+    overflow: hidden;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .cast__name {
+      margin-bottom: 3rem;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+    }
   }
 `;
 

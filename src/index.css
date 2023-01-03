@@ -4,6 +4,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   background-color: #0e1217;
+  scroll-behavior: smooth;
 }
 
 @media only screen and (max-width: 768px) {

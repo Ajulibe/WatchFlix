@@ -1,17 +1,7 @@
 /* eslint-disable */
-import React, {
-  FC,
-  lazy,
-  Suspense,
-  useCallback,
-  useLayoutEffect,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import React, { FC, lazy, useCallback, useLayoutEffect, useEffect, useRef, useState } from "react";
 import { getMovies } from "api";
 import debounce from "lodash/debounce";
-import { Spinner } from "components/spinner";
 import type { Results } from "types";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -119,16 +109,15 @@ export const SearchResults: FC = () => {
   }, []);
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <Content
-        selectEmission={selectEmission}
-        handleChange={handleChange}
-        data-testid="content"
-        isLoading={isLoading}
-        data={movies}
-        isMounted={isMounted}
-      />
-    </Suspense>
+    <Content
+      selectEmission={selectEmission}
+      handleChange={handleChange}
+      data-testid="content"
+      isLoading={isLoading}
+      data={movies}
+      isMounted={isMounted}
+      emissionType={emissionType}
+    />
   );
 };
 

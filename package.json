@@ -22,6 +22,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-instantsearch-hooks-web": "^6.38.1",
+    "react-lazy-load-image-component": "^1.5.6",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
+    "@types/react-lazy-load-image-component": "^1.5.2",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "eslint": "^8.31.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
