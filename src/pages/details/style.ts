@@ -4,14 +4,18 @@ import { COLORS } from "utils/colors";
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  padding: 40px 23px 28px 27px;
+  padding: 4rem 2.3rem 2.8rem 2.7rem;
   box-sizing: border-box;
   color: ${COLORS.white}
   animation: zoomOut 0.2s ease-in;
+  overflow: hidden;
+
+  @media only screen and (max-width: 687px) {
+    padding: 2rem 0.2rem 2.8rem 0.2rem;
+  }
 `;
 
 export const ModalTitle = styled.div`
-  width: 100%;
   font-weight: bold;
   color: ${COLORS.white};
   display: flex;
@@ -19,11 +23,14 @@ export const ModalTitle = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 2rem;
-  padding-left: 4rem;
   font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
 
   .movie__title {
     font-size: 4rem;
+
+    @media only screen and (max-width: 489px) {
+      font-size: 3rem;
+    }
 
     & + div {
       margin-top: 2rem;
@@ -53,13 +60,11 @@ export const ModalDetails = styled.div`
   font-weight: 300;
   line-height: 3rem;
   margin-top: 3.4rem;
-  width: 80%;
-  padding: 0 4rem;
   text-align: justify;
   font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
 
   .header__container {
-    width: 50%;
+    width: 100%;
   }
 
   .header {
@@ -74,9 +79,12 @@ export const ModalDetails = styled.div`
   .wrapper {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(3, 180px);
+    grid-template-columns: repeat(auto-fill, 18rem);
     grid-gap: 10px;
-    width: 100%;
+
+    @media only screen and (max-width: 393px) {
+      grid-template-columns: repeat(auto-fill, 14rem);
+    }
   }
 
   .movie__cast {
@@ -91,9 +99,14 @@ export const ModalDetails = styled.div`
     }
 
     img {
-      width: 180px;
-      height: 180px;
+      width: 18rem;
+      height: 18rem;
       object-fit: cover;
+
+      @media only screen and (max-width: 393px) {
+        width: 14rem;
+        height: 14rem;
+      }
     }
   }
 `;
@@ -101,7 +114,7 @@ export const ModalDetails = styled.div`
 export const ModalImage = styled.div`
   margin-top: 2rem;
   width: 100%;
-  height: 45.9rem;
+  max-height: 39.8rem;
   border-radius: 16px;
   border: 1px solid ${COLORS.mininalGrey};
   overflow: hidden;
@@ -109,15 +122,18 @@ export const ModalImage = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
     object-position: center;
-    z-index: 100 !important;
-    position: relative;
   }
 
-  .no-image {
-    font-size: 20px;
-    font-weight: 600;
+  @media only screen and (max-width: 971px) {
+    height: 34.8rem;
+  }
+  @media only screen and (max-width: 763px) {
+    height: 24.8rem;
+  }
+
+  @media only screen and (max-width: 658px) {
+    height: auto;
   }
 `;

@@ -1,20 +1,22 @@
-import { AppLayout } from "./layout";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AppLayout } from "./layout";
 import { SearchResults } from "pages/results";
 import { Details } from "pages/details";
+import { createBrowserRouter } from "react-router-dom";
 
-const App: React.FC = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route path="results" element={<SearchResults />} />
-          <Route path="results/:movieId" element={<Details />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
-};
-
-export default App;
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "results",
+        element: <SearchResults />
+      },
+      {
+        path: "results/:movieId",
+        element: <Details />
+      }
+    ]
+  }
+]);

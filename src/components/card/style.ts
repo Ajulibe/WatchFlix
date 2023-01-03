@@ -89,4 +89,5 @@ export const MovieTitle = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px 13px 13px 13px;
+  font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
 `;

@@ -4,7 +4,7 @@ import { Empty, FlexContainer, MovieWrapper, Title, CurlyTitle, TitleWrapper } f
 import { CardWidget } from "components/card";
 import { Spinner } from "components/spinner";
 import type { Results } from "types";
-import { SearchHeader } from "components/searchInput";
+import { SearchHeader } from "components/searchheader";
 import { useNavigate } from "react-router-dom";
 
 interface IProps {

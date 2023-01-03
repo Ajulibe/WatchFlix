@@ -26,27 +26,23 @@ export const Details: FC = () => {
     getCastList();
   }, [getCastList]);
 
-  console.log(cast, "cast");
-
   return (
     <Container className="content-container">
-      <ModalImage>
-        {item?.backdrop_path ? (
+      {item?.backdrop_path && (
+        <ModalImage>
           <LazyLoadImage
             alt={item?.original_title}
             src={`${config.IMAGE_BASE_URL}${item?.backdrop_path}`}
             placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.backdrop_path}`}
             effect="blur"
           />
-        ) : (
-          <p className="no-image">NO IMAGE</p>
-        )}
-      </ModalImage>
+        </ModalImage>
+      )}
 
       <ModalTitle>
         <span className="movie__title">{item?.title}</span>
         <div>
-          <span className="movie__rating">{Number(item?.vote_average).toFixed(1)} rating</span>
+          <span className="movie__rating">{Number(item?.vote_average).toFixed(1)}</span>
           &nbsp; &nbsp; &nbsp; &nbsp;
           <span className="movie__year">{moment(item.release_date, "YYYY-MM-DD").year()}</span>
         </div>

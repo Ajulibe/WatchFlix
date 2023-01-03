@@ -13,14 +13,20 @@ body {
   }
 }
 
-@media only screen and (max-width: 280px) {
+@media only screen and (max-width: 650px) {
   html {
-    font-size: 62.5%;
+    font-size: 47.5%;
+  }
+}
+
+@media only screen and (max-width: 393px) {
+  html {
+    font-size: 37.5%;
   }
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   outline: none;
   text-rendering: optimizeLegibility;
