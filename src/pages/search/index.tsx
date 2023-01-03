@@ -8,8 +8,14 @@ import { PagesWrapper } from "layout";
 import { Spinner } from "components/spinner";
 
 const HeaderText = React.memo(() => {
+  const navigate = useNavigate();
+
+  const navigateHome = (): void => {
+    navigate("/");
+  };
+
   return (
-    <TitleWrapper>
+    <TitleWrapper onClick={navigateHome}>
       <CurlyTitle>watch</CurlyTitle>
       <Title>Flix</Title>
     </TitleWrapper>

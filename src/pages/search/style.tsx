@@ -94,6 +94,7 @@ export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 1rem 0;
+  cursor: pointer;
 `;
 
 export const Empty = styled.div`

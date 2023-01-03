@@ -1,21 +1,21 @@
-/* eslint-disable */
+/*eslint-disable*/
 import React, { useCallback, useLayoutEffect, useEffect, useRef, useState } from "react";
 import { getMovies } from "api";
 import debounce from "lodash/debounce";
 import type { Results } from "types";
-import { useSearchParams } from "react-router-dom";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useLocalStorage } from "hooks/useLocalStorage";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { useSessionStorage } from "hooks/useSessionStorage";
 
 /**
  *
- * This hook does data fetching as well as url to state sync
- * @debounce - is used to avoid multiple api calls on key press
+ *  This hook does data fetching as well as url to state sync
+ *  @debounce - is used to avoid multiple api calls on key press
+ *
  *
  */
 
 export const useResultsSync = () => {
-  const [searchTerm, setSearchTerm] = useState("christmas");
+  const [searchedTerm, setSearchedTerm] = useState("christmas");
   const [movies, setMovies] = useState<Results[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useRef<boolean>(false);
@@ -24,9 +24,28 @@ export const useResultsSync = () => {
   const location = useLocation();
   const queryValue = searchParams.get("query");
   const debounceDelay = useRef(300);
-  const [value, setValue] = useLocalStorage("emissionType", "");
+  const [value, setValue] = useSessionStorage("emissionType", "");
   const [emissionType, setEmissionType] = useState<string>((): string =>
-    value !== "" ? value : "movies"
+    value !== "" ? value : "movie"
+  );
+
+  /*=============================================
+=            Get Movies/Series List            =
+=============================================*/
+  const fetchMovies = useCallback(
+    async (
+      emission: string,
+      searchTerm: string,
+      callback: (r: Results[]) => void
+    ): Promise<void> => {
+      try {
+        const res: any = await getMovies(emission, searchTerm);
+        const { results } = res.data;
+        isMounted.current = true;
+        callback(results);
+      } catch (error) {}
+    },
+    []
   );
 
   const debouncedFetchMovies = useCallback(
@@ -41,29 +60,12 @@ export const useResultsSync = () => {
     []
   );
 
-  const fetchMovies = useCallback(
-    async (
-      emissionType: string,
-      searchTerm: string,
-      callback: (r: Results[]) => void
-    ): Promise<void> => {
-      try {
-        const res: any = await getMovies(emissionType, searchTerm);
-        const { results } = res.data;
-        isMounted.current = true;
-        callback(results);
-      } catch (error) {}
-    },
-    []
-  );
-
   // this ensures state update on back button press
   useEffect(() => {
-    // @ts-ignore
-    // detect whren the back button is pressed to fetch new movies
+    // detect when the back button is pressed to fetch new movies
     window.addEventListener("popstate", function () {
       if (queryValue) {
-        debouncedFetchMovies(emissionType, queryValue, (res: Results[]) => {
+        void debouncedFetchMovies(emissionType, queryValue, (res: Results[]) => {
           setMovies(res);
           setIsLoading(false);
         });
@@ -72,18 +74,18 @@ export const useResultsSync = () => {
   }, [location]);
 
   const selectEmission = useCallback((e: React.FormEvent<HTMLSelectElement>) => {
-    const emissionType = (e.target as HTMLInputElement).value;
-    setValue(emissionType);
-    setEmissionType(emissionType);
+    const emissionValue = (e.target as HTMLInputElement).value;
+    setValue(emissionValue);
+    setEmissionType(emissionValue);
   }, []);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     const term = e.target.value;
-    setSearchTerm(term);
+    setSearchedTerm(term);
   }, []);
 
   useLayoutEffect(() => {
-    if (!searchTerm) {
+    if (!searchedTerm) {
       setTimeout(() => {
         searchParams.delete("query");
         setSearchParams(searchParams);
@@ -101,18 +103,18 @@ export const useResultsSync = () => {
           setMovies(res);
         });
       } else {
-        debouncedFetchMovies(emissionType, searchTerm, (res: Results[]) => {
+        debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
           setMovies(res);
         });
       }
     } else {
       setIsLoading(true);
-      debouncedFetchMovies(emissionType, searchTerm, (res: Results[]) => {
+      debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
         setMovies(res);
       });
-      setSearchParams(`?query=${searchTerm}`);
+      setSearchParams(`?query=${searchedTerm}`);
     }
-  }, [searchTerm, emissionType]);
+  }, [searchedTerm, emissionType]);
 
   return {
     movies,

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { easeIn } from "utils/animations";
 import { COLORS } from "utils/colors";
+import { FONTS } from "utils/fonts";
 
 export const Card = styled.div`
   width: 28rem;
@@ -59,16 +60,6 @@ export const Card = styled.div`
     width: 40rem;
     height: 50rem;
   }
-
-  /* @media only screen and (max-width: 430px) {
-    width: 28rem;
-    height: 34.8rem;
-  }
-
-  @media only screen and (max-width: 382px) {
-    width: 32rem;
-    height: 38.8rem;
-  } */
 `;
 export const CardPreview = styled.div`
   width: 100%;
@@ -116,5 +107,5 @@ export const MovieTitle = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px 13px 13px 13px;
-  font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
+  font-family: ${FONTS.primary};
 `;

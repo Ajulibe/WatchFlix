@@ -1,4 +1,3 @@
-import React from "react";
 import { generatorFn } from "utils/gradient-generator";
 
 export const PlaceHolderImage = (): JSX.Element => {
