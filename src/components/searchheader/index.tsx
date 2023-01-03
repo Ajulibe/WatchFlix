@@ -14,12 +14,12 @@ export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission }) => 
 
   const emisionsData = [
     {
-      value: "tv",
-      name: "Tv shows"
+      value: "movie",
+      name: "Movies"
     },
     {
-      value: "movies",
-      name: "Movies"
+      value: "tv",
+      name: "Tv shows"
     }
   ];
 

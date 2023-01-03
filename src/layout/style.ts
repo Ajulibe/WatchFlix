@@ -13,6 +13,7 @@ export const Layout = styled.div`
 export const Wrapper = styled.div`
   width: 120rem;
   justify-content: center;
+  transition: all 0.2s ease-in;
 
   @media only screen and (max-width: 1241px) {
     max-width: 90%;

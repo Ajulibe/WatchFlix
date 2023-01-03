@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { easeIn } from "utils/animations";
 import { COLORS } from "utils/colors";
 
 export const Card = styled.div`
@@ -12,6 +13,8 @@ export const Card = styled.div`
   border: 1px solid ${COLORS.mininalGrey};
   overflow: hidden;
   background-color: ${COLORS.cardBg};
+  animation: ${easeIn} 0.3s ease-in;
+  will-change: auto;
 
   &:hover {
     border: 1px solid ${COLORS.cardHover};

@@ -8,31 +8,43 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 interface IProps {
   item: Results;
   onClick: () => void;
+  emissionType: string;
 }
 
-export const CardWidget: React.FC<IProps> = ({ item, onClick }) => {
+const PlaceHolderImage = (): JSX.Element => {
+  return (
+    <div className="placeholder__image" style={{ background: generatorFn() }}>
+      <div>
+        <p className="no-image">No image</p>
+      </div>
+    </div>
+  );
+};
+
+export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) => {
+  const emisionTitle = emissionType === "tv" ? item.original_name : item.original_title;
+
   return (
     <Card key={item.id} onClick={onClick} className="card" data-testid="card">
       <CardPreview>
         {item.poster_path ? (
           <LazyLoadImage
+            delayTime={1000}
             title="poster picture"
-            loading="lazy"
             effect="blur"
+            width={700}
+            height={500}
             placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.poster_path}`}
             src={`${config.IMAGE_BASE_URL}${item?.poster_path}`}
-            alt={item.original_title}
+            alt={emisionTitle}
+            placeholder={<PlaceHolderImage />}
           />
         ) : (
-          <div className="placeholder__image" style={{ background: generatorFn() }}>
-            <div>
-              <p className="no-image">No image</p>
-            </div>
-          </div>
+          <PlaceHolderImage />
         )}
       </CardPreview>
       <MovieTitle>
-        <span>{item.original_title}</span>
+        <span>{emisionTitle}</span>
       </MovieTitle>
     </Card>
   );

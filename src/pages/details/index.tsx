@@ -40,11 +40,13 @@ export const Details: FC = () => {
       )}
 
       <ModalTitle>
-        <span className="movie__title">{item?.title}</span>
         <div>
-          <span className="movie__rating">{Number(item?.vote_average).toFixed(1)}</span>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <span className="movie__year">{moment(item.release_date, "YYYY-MM-DD").year()}</span>
+          <span className="movie__title">{item?.title}</span>
+          <div>
+            <span className="movie__rating">{Number(item?.vote_average).toFixed(1)}</span>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <span className="movie__year">{moment(item.release_date, "YYYY-MM-DD").year()}</span>
+          </div>
         </div>
       </ModalTitle>
 
@@ -58,29 +60,31 @@ export const Details: FC = () => {
       </ModalDetails>
 
       <ModalDetails>
-        <div className="cast__header">
-          <b>Cast</b>
-        </div>
-        <div className="wrapper">
-          {cast.map((item: any) => {
-            return (
-              <>
-                {item.profile_path !== null ? (
-                  <div className="movie__cast">
-                    <div className="cast__image">
-                      <LazyLoadImage
-                        alt={item?.name}
-                        src={`${config.IMAGE_BASE_URL}${item?.profile_path}`}
-                        placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.profile_path}`}
-                        effect="blur"
-                      />
+        <div className="animation__wrapper">
+          <div className="cast__header">
+            <b>Cast</b>
+          </div>
+          <div className="wrapper">
+            {cast.map((item: any) => {
+              return (
+                <>
+                  {item.profile_path !== null ? (
+                    <div className="movie__cast">
+                      <div className="cast__image">
+                        <LazyLoadImage
+                          alt={item?.name}
+                          src={`${config.IMAGE_BASE_URL}${item?.profile_path}`}
+                          placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.profile_path}`}
+                          effect="blur"
+                        />
+                      </div>
+                      <span className="cast__name"> {item.original_name}</span>
                     </div>
-                    <span className="cast__name"> {item.original_name}</span>
-                  </div>
-                ) : null}
-              </>
-            );
-          })}
+                  ) : null}
+                </>
+              );
+            })}
+          </div>
         </div>
       </ModalDetails>
     </Container>

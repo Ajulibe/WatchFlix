@@ -37,6 +37,7 @@ const Content: React.FC<IProps> = ({
           data.map((item) => {
             return (
               <CardWidget
+                emissionType={emissionType}
                 key={item.id}
                 item={item}
                 onClick={() => {

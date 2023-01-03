@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import { COLORS } from "utils/colors";
+import { easeIn, grow } from "utils/animations";
 
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 4rem 2.3rem 2.8rem 2.7rem;
   box-sizing: border-box;
-  color: ${COLORS.white}
-  animation: zoomOut 0.2s ease-in;
+  color: ${COLORS.white};
   overflow: hidden;
+  animation: ${easeIn} 0.4s ease-in;
+  will-change: auto;
 
   @media only screen and (max-width: 687px) {
     padding: 2rem 0.2rem 2.8rem 0.2rem;
@@ -24,6 +26,21 @@ export const ModalTitle = styled.div`
   flex-direction: column;
   margin-top: 2rem;
   font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
+  overflow: hidden;
+
+  div {
+    transform: translateY(100px);
+    animation: ${grow} 0.4s ease-in-out 0.2s forwards;
+    will-change: auto;
+    opacity: 0.5;
+  }
+  /* 
+  @keyframes grow {
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  } */
 
   .movie__title {
     font-size: 4rem;
@@ -43,7 +60,7 @@ export const ModalTitle = styled.div`
     background-color: ${COLORS.primary};
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: 1rem;
+    padding: 0.6rem;
   }
 
   .movie__year {
@@ -65,6 +82,16 @@ export const ModalDetails = styled.div`
 
   .header__container {
     width: 100%;
+    transform: translateY(100px);
+    animation: ${grow} 0.4s ease-in-out 0.3s forwards;
+    will-change: auto;
+    opacity: 0.5;
+  }
+
+  .animation__wrapper {
+    animation: ${easeIn} 0.4s ease-in-out 0.5s forwards;
+    will-change: auto;
+    opacity: 0;
   }
 
   .header {
@@ -118,12 +145,19 @@ export const ModalImage = styled.div`
   border-radius: 16px;
   border: 1px solid ${COLORS.mininalGrey};
   overflow: hidden;
+  opacity: 0;
   position: relative;
+  animation: ${easeIn} 1s ease-in-out forwards;
+  will-change: auto;
+  transition: all 0.2s ease-in;
 
   img {
     width: 100%;
     object-fit: cover;
     object-position: center;
+    animation: grow 0.3s ease-in forwards;
+    will-change: auto;
+    transition: all 0.2s ease-in forwards;
   }
 
   @media only screen and (max-width: 971px) {
