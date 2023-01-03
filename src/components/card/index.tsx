@@ -2,24 +2,14 @@ import React from "react";
 import { Card, CardPreview, MovieTitle } from "./style";
 import config from "config";
 import type { Results } from "types";
-import { generatorFn } from "utils/gradient-generator";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { PlaceHolderImage } from "components/placeholder-image";
 
 interface IProps {
   item: Results;
   onClick: () => void;
   emissionType: string;
 }
-
-const PlaceHolderImage = (): JSX.Element => {
-  return (
-    <div className="placeholder__image" style={{ background: generatorFn() }}>
-      <div>
-        <p className="no-image">No image</p>
-      </div>
-    </div>
-  );
-};
 
 export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) => {
   const emisionTitle = emissionType === "tv" ? item.original_name : item.original_title;
@@ -30,7 +20,7 @@ export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) =>
         {item.poster_path ? (
           <LazyLoadImage
             delayTime={1000}
-            title="poster picture"
+            title={emisionTitle}
             effect="blur"
             width={700}
             height={500}

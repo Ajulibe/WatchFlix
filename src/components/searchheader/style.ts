@@ -16,9 +16,20 @@ export const Container = styled.div`
     padding: 1rem;
     border: 1px solid transparent;
     border-right: 16px solid transparent;
+    font-weight: bold;
+    font-size: 14px;
 
     :focus {
       outline: none;
+    }
+  }
+
+  @media only screen and (max-width: 968px) {
+    flex-direction: column-reverse;
+
+    select {
+      margin-bottom: 2rem;
+      width: 50%;
     }
   }
 `;
@@ -27,6 +38,11 @@ export const InputWrapper = styled.div`
   position: relative;
   margin-bottom: 4rem;
   width: 85%;
+
+  @media only screen and (max-width: 968px) {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 
   img {
     position: absolute;
@@ -42,17 +58,16 @@ export const Input = styled.input`
   background: ${COLORS.lightBlack};
   box-sizing: border-box;
   color: ${COLORS.white};
-  font-size: 16px;
-  line-height: 15px;
   display: flex;
   align-items: center;
-  padding: 14px 34px 14px 34px;
+  padding: 1.4rem 3.4rem 1.4rem 3.4rem;
   outline: none !important;
   border-radius: 10px;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   border: 1px solid transparent;
+  font-size: 14px;
 
   ::placeholder {
     color: ${COLORS.placeholderColor};

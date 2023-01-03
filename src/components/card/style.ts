@@ -27,15 +27,21 @@ export const Card = styled.div`
     }
   }
 
+  @media only screen and (max-width: 991px) {
+    width: 24rem;
+  }
+
+  @media only screen and (max-width: 824px) {
+    width: 28rem;
+  }
+
   @media only screen and (max-width: 651px) {
     width: 22rem;
     height: 30.8rem;
   }
 
   @media only screen and (max-width: 520px) {
-    width: 45%;
-    height: 26.8rem;
-
+    width: 22rem;
     &:hover {
       border: none;
     }
@@ -44,6 +50,11 @@ export const Card = styled.div`
   @media only screen and (max-width: 430px) {
     width: 28rem;
     height: 34.8rem;
+  }
+
+  @media only screen and (max-width: 382px) {
+    width: 32rem;
+    height: 38.8rem;
   }
 `;
 export const CardPreview = styled.div`
@@ -83,7 +94,7 @@ export const CardPreview = styled.div`
 `;
 
 export const MovieTitle = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 26px;
   color: ${COLORS.white};

@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { ChangeEvent, MutableRefObject } from "react";
 import { Empty, FlexContainer, MovieWrapper, Title, CurlyTitle, TitleWrapper } from "./style";
 import { CardWidget } from "components/card";
@@ -31,7 +30,11 @@ const Content: React.FC<IProps> = ({
         <CurlyTitle>watch</CurlyTitle>
         <Title>Flix</Title>
       </TitleWrapper>
-      <SearchHeader onChange={handleChange} selectEmission={selectEmission} />
+      <SearchHeader
+        onChange={handleChange}
+        selectEmission={selectEmission}
+        emissionType={emissionType}
+      />
       <MovieWrapper>
         {!isLoading &&
           data.map((item) => {

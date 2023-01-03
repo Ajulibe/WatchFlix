@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { useResultsSync } from "hooks/use-results-sync";
+import { useResultsSync } from "hooks/useResultsSync";
 
 // code-splitting for performance gains
 const Content = lazy(async () => import("components/content"));

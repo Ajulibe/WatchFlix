@@ -14,7 +14,6 @@ export async function getMovies(
       );
     } else {
       response = await axios.get(
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         `${config.API_BASE_URL}/search/${emissionType}?api_key=${config.API_KEY}&language=en-US&query=${searchTerm}&sort_by=popularity.desc&page=1&timezone=America/New_York&include_null_first_air_dates=false`
       );
     }
@@ -28,7 +27,6 @@ export async function getCast(emissionType: string, movieId: number): Promise<un
   let response;
   try {
     response = await axios.get(
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       `${config.API_BASE_URL}/${emissionType}/${movieId}/credits?api_key=${config.API_KEY}&language=en-US`
     );
   } catch (error) {

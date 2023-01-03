@@ -1,6 +1,6 @@
 /* eslint-disable */
-import React, { FC, useCallback, useEffect, useState, useLayoutEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { FC, useCallback, useState, useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Container, ModalDetails, ModalImage, ModalTitle } from "./style";
 import config from "config";
 import moment from "moment";
@@ -8,7 +8,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getCast } from "api";
 
 export const Details: FC = () => {
-  const navigate = useNavigate();
   const [cast, setCast] = useState([]);
   const {
     state: { item, emissionType }
@@ -59,34 +58,32 @@ export const Details: FC = () => {
         </div>
       </ModalDetails>
 
-      <ModalDetails>
-        <div className="animation__wrapper">
-          <div className="cast__header">
-            <b>Cast</b>
-          </div>
-          <div className="wrapper">
-            {cast.map((item: any) => {
-              return (
-                <>
-                  {item.profile_path !== null ? (
-                    <div className="movie__cast">
-                      <div className="cast__image">
-                        <LazyLoadImage
-                          alt={item?.name}
-                          src={`${config.IMAGE_BASE_URL}${item?.profile_path}`}
-                          placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.profile_path}`}
-                          effect="blur"
-                        />
-                      </div>
-                      <span className="cast__name"> {item.original_name}</span>
+      {cast.length > 0 && (
+        <ModalDetails>
+          <div className="animation__wrapper">
+            <div className="cast__header">
+              <b>Cast</b>
+            </div>
+            <div className="wrapper">
+              {cast.map((item: any) => {
+                return item.profile_path !== null ? (
+                  <div key={item?.profile_path} className="movie__cast">
+                    <div className="cast__image">
+                      <LazyLoadImage
+                        alt={item?.name}
+                        src={`${config.IMAGE_BASE_URL}${item?.profile_path}`}
+                        placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.profile_path}`}
+                        effect="blur"
+                      />
                     </div>
-                  ) : null}
-                </>
-              );
-            })}
+                    <span className="cast__name"> {item.original_name}</span>
+                  </div>
+                ) : null;
+              })}
+            </div>
           </div>
-        </div>
-      </ModalDetails>
+        </ModalDetails>
+      )}
     </Container>
   );
 };

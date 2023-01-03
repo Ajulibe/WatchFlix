@@ -147,7 +147,7 @@ export const ModalImage = styled.div`
   overflow: hidden;
   opacity: 0;
   position: relative;
-  animation: ${easeIn} 1s ease-in-out forwards;
+  animation: ${easeIn} 1s ease-in-out 0.1s forwards;
   will-change: auto;
   transition: all 0.2s ease-in;
 

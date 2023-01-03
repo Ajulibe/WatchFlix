@@ -15,15 +15,23 @@ export const MovieWrapper = styled.div`
   }
 
   @media only screen and (max-width: 991px) {
+    max-width: 80rem;
+  }
+
+  @media only screen and (max-width: 824px) {
     max-width: 60rem;
   }
 
-  @media only screen and (max-width: 651px) {
-    max-width: 100%;
-    justify-content: center;
+  @media only screen and (max-width: 648px) {
+    max-width: 80rem;
   }
 
-  @media only screen and (max-width: 430px) {
+  @media only screen and (max-width: 521px) {
+    max-width: 80rem;
+  }
+
+  @media only screen and (max-width: 432px) {
+    justify-content: center;
     .card {
       margin-bottom: 2rem;
     }
@@ -40,7 +48,7 @@ export const FlexContainer = styled.div`
 
 export const Title = styled.h1`
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 4rem;
   color: ${COLORS.white};
   background-color: ${COLORS.cardBg};
   padding: 0 8px;
@@ -52,7 +60,7 @@ export const Title = styled.h1`
 export const CurlyTitle = styled.h1`
   font-family: "Spirax", cursive;
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 4rem;
   margin-right: 4px;
   color: ${COLORS.primary};
   @media only screen and (max-width: 991px) {

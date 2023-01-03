@@ -5,6 +5,7 @@ import debounce from "lodash/debounce";
 import type { Results } from "types";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useLocalStorage } from "hooks/useLocalStorage";
 
 /**
  *
@@ -16,7 +17,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 export const useResultsSync = () => {
   const [searchTerm, setSearchTerm] = useState("christmas");
   const [movies, setMovies] = useState<Results[]>([]);
-  const [emissionType, setEmissionType] = useState<string>("movie");
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useRef<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,6 +24,12 @@ export const useResultsSync = () => {
   const location = useLocation();
   const queryValue = searchParams.get("query");
   const debounceDelay = useRef(300);
+  const [value, setValue] = useLocalStorage("emissionType", "");
+  const [emissionType, setEmissionType] = useState<string>((): string =>
+    value !== "" ? value : "movies"
+  );
+
+  console.log(emissionType, "emissionType");
 
   const debouncedFetchMovies = useCallback(
     debounce(async (emissionType, searchTerm: string, cb) => {
@@ -68,7 +74,9 @@ export const useResultsSync = () => {
   }, [location]);
 
   const selectEmission = (e: React.FormEvent<HTMLSelectElement>) => {
-    setEmissionType((e.target as HTMLInputElement).value);
+    const emissionType = (e.target as HTMLInputElement).value;
+    setValue(emissionType);
+    setEmissionType(emissionType);
   };
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {

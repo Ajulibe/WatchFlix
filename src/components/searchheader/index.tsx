@@ -6,9 +6,10 @@ import searchIcon from "assets/search-icon.svg";
 interface IProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   selectEmission: React.ChangeEventHandler<HTMLSelectElement>;
+  emissionType: string;
 }
 
-export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission }) => {
+export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission, emissionType }) => {
   const [searchParams] = useSearchParams();
   const queryValue = searchParams.get("query");
 
@@ -25,7 +26,7 @@ export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission }) => 
 
   return (
     <Container>
-      <select name="emissionOptions" onChange={selectEmission}>
+      <select name="emissionOptions" value={emissionType} onChange={selectEmission}>
         {emisionsData.map((item, index) => (
           <option key={`${item.value}-${index}`} value={item.value}>
             {item.name}
