@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { easeIn } from "utils/animations";
 import { COLORS } from "utils/colors";
 
 export const MovieWrapper = styled.div`
@@ -8,6 +9,10 @@ export const MovieWrapper = styled.div`
   column-gap: 1rem;
   justify-content: space-between;
   align-self: center;
+  animation: ${easeIn} 0.7s ease-in-out 0.4s forwards;
+  will-change: auto;
+  transition: all 0.2s ease-in;
+  opacity: 0;
 
   &:after {
     content: "";
@@ -16,21 +21,34 @@ export const MovieWrapper = styled.div`
 
   @media only screen and (max-width: 991px) {
     max-width: 80rem;
+
+    &:after {
+      margin-left: 24rem;
+    }
   }
 
   @media only screen and (max-width: 824px) {
     max-width: 60rem;
+    &:after {
+      margin-left: 28rem;
+    }
+  }
+
+  @media only screen and (max-width: 651px) {
+    &:after {
+      margin-left: 22rem;
+    }
   }
 
   @media only screen and (max-width: 648px) {
     max-width: 80rem;
   }
 
-  @media only screen and (max-width: 521px) {
-    max-width: 80rem;
+  @media only screen and (max-width: 574px) {
+    max-width: 60rem;
   }
 
-  @media only screen and (max-width: 432px) {
+  @media only screen and (max-width: 449px) {
     justify-content: center;
     .card {
       margin-bottom: 2rem;
@@ -44,6 +62,10 @@ export const FlexContainer = styled.div`
   flex-direction: column;
   padding-top: 0.7rem;
   min-height: 100vh;
+  padding-bottom: 7rem;
+  animation: ${easeIn} 0.4s ease-in-out forwards;
+  will-change: auto;
+  opacity: 0;
 `;
 
 export const Title = styled.h1`

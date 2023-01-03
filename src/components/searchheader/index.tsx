@@ -25,26 +25,28 @@ export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission, emiss
   ];
 
   return (
-    <Container>
-      <select name="emissionOptions" value={emissionType} onChange={selectEmission}>
-        {emisionsData.map((item, index) => (
-          <option key={`${item.value}-${index}`} value={item.value}>
-            {item.name}
-          </option>
-        ))}
-      </select>
-      <InputWrapper>
-        <Input
-          style={{ outline: "none" }}
-          defaultValue={queryValue ?? ""}
-          autoFocus={Boolean(queryValue)}
-          data-testid="search-input"
-          type="text"
-          placeholder="Search for a movie"
-          onChange={onChange}
-        />
-        <img src={searchIcon} alt="searchIcon" />
-      </InputWrapper>
-    </Container>
+    <div style={{ overflow: "hidden" }}>
+      <Container>
+        <select name="emissionOptions" value={emissionType} onChange={selectEmission}>
+          {emisionsData.map((item, index) => (
+            <option key={`${item.value}-${index}`} value={item.value}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <InputWrapper>
+          <Input
+            style={{ outline: "none" }}
+            defaultValue={queryValue ?? ""}
+            autoFocus={Boolean(queryValue)}
+            data-testid="search-input"
+            type="text"
+            placeholder="Search for a movie"
+            onChange={onChange}
+          />
+          <img src={searchIcon} alt="searchIcon" />
+        </InputWrapper>
+      </Container>
+    </div>
   );
 };

@@ -4,8 +4,7 @@ import { easeIn, grow } from "utils/animations";
 
 export const Container = styled.div`
   width: 100%;
-  min-height: 100vh;
-  padding: 4rem 2.3rem 2.8rem 2.7rem;
+  padding: 4rem 2.3rem 4rem 2.7rem;
   box-sizing: border-box;
   color: ${COLORS.white};
   overflow: hidden;
@@ -34,13 +33,6 @@ export const ModalTitle = styled.div`
     will-change: auto;
     opacity: 0.5;
   }
-  /* 
-  @keyframes grow {
-    to {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-  } */
 
   .movie__title {
     font-size: 4rem;
@@ -155,9 +147,6 @@ export const ModalImage = styled.div`
     width: 100%;
     object-fit: cover;
     object-position: center;
-    animation: grow 0.3s ease-in forwards;
-    will-change: auto;
-    transition: all 0.2s ease-in forwards;
   }
 
   @media only screen and (max-width: 971px) {

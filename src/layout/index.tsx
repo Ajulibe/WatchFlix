@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
 import { Layout, Wrapper } from "./style";
-import { Outlet, ScrollRestoration } from "react-router-dom";
 import { Spinner } from "components/spinner";
 
-export const AppLayout: React.FC = () => {
+interface IProps {
+  children: React.ReactNode;
+}
+
+export const PagesWrapper: React.FC<IProps> = ({ children }) => {
   return (
     <Layout data-testid="layout">
-      <ScrollRestoration />
       <Wrapper>
-        <Suspense fallback={<Spinner />}>
-          <Outlet />
-        </Suspense>
+        <Suspense fallback={<Spinner />}>{children}</Suspense>
       </Wrapper>
     </Layout>
   );

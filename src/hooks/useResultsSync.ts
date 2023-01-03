@@ -29,8 +29,6 @@ export const useResultsSync = () => {
     value !== "" ? value : "movies"
   );
 
-  console.log(emissionType, "emissionType");
-
   const debouncedFetchMovies = useCallback(
     debounce(async (emissionType, searchTerm: string, cb) => {
       try {
@@ -73,11 +71,11 @@ export const useResultsSync = () => {
     });
   }, [location]);
 
-  const selectEmission = (e: React.FormEvent<HTMLSelectElement>) => {
+  const selectEmission = useCallback((e: React.FormEvent<HTMLSelectElement>) => {
     const emissionType = (e.target as HTMLInputElement).value;
     setValue(emissionType);
     setEmissionType(emissionType);
-  };
+  }, []);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     const term = e.target.value;

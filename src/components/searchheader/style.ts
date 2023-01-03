@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { grow } from "utils/animations";
 import { COLORS } from "utils/colors";
 
 export const Container = styled.div`
@@ -6,6 +7,11 @@ export const Container = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: baseline;
+  transform: translateY(-100px);
+  animation: ${grow} 0.6s ease-in-out forwards;
+  transition: all 0.4s ease-in;
+  will-change: auto;
+  opacity: 0.3;
 
   select {
     width: 13%;

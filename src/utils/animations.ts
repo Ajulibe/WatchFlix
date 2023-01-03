@@ -15,3 +15,10 @@ export const grow = keyframes`
       opacity: 1;
     }
 `;
+
+export const move = keyframes`
+  0% {background-position: bottom left;}
+  25% {background-position: top right;}
+  50%{background-position: top left;}
+  100% {background-position: bottom right;}
+`;
