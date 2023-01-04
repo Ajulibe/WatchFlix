@@ -31,6 +31,16 @@ export const Card = styled.div`
   @media only screen and (max-width: 991px) {
     width: 100%;
   }
+  @media only screen and (max-width: 789px) {
+    &:hover {
+      border: none;
+      box-shadow: none;
+      img {
+        transform: unset;
+        filter: unset;
+      }
+    }
+  }
 
   @media only screen and (max-width: 651px) {
     height: 36.8rem;
@@ -61,6 +71,7 @@ export const CardPreview = styled.div`
     height: 100%;
     object-fit: cover;
     transition: all 0.5s ease-in;
+    overflow: hidden;
   }
 
   .no-image {
