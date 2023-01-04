@@ -12,7 +12,7 @@ const Home = (): JSX.Element => {
           movie marathon. So why wait? Start watching now and join the millions of satisfied
           subscribers already enjoying the best movies and TV shows.
         </Caption>
-        <Link to="/results">Enter</Link>
+        <Link to="/results">Browse</Link>
       </Wrapper>
     </Container>
   );
