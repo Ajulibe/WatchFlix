@@ -3,7 +3,7 @@ import Home from "pages/home";
 import SearchPage from "pages/search";
 import DetailsPage from "pages/details";
 
-export const router = createBrowserRouter([
+export const routesConfig = [
   {
     path: "/",
     element: <Home />
@@ -16,4 +16,6 @@ export const router = createBrowserRouter([
     path: "results/:movieId",
     element: <DetailsPage />
   }
-]);
+];
+
+export const router = createBrowserRouter(routesConfig);

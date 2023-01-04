@@ -15,7 +15,7 @@ const HeaderText = React.memo(() => {
   };
 
   return (
-    <TitleWrapper onClick={navigateHome}>
+    <TitleWrapper onClick={navigateHome} data-testid="header">
       <CurlyTitle>watch</CurlyTitle>
       <Title>Flix</Title>
     </TitleWrapper>
