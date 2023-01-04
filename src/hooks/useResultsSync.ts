@@ -119,6 +119,7 @@ export const useResultsSync = (): IValue => {
           setMovies(res);
         });
       } else {
+        setIsLoading(true);
         void debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
           setMovies(res);
         });

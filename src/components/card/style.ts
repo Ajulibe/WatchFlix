@@ -42,8 +42,12 @@ export const Card = styled.div`
     }
   }
 
+  @media only screen and (max-width: 475px) {
+    height: 54.8rem;
+  }
+
   @media only screen and (max-width: 394px) {
-    height: 50rem;
+    height: 54rem;
   }
 `;
 export const CardPreview = styled.div`

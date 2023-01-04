@@ -8,9 +8,8 @@ export const MovieWrapper = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(22rem, 28rem));
-  animation: ${easeIn} 0.7s ease-in 0.4s forwards;
+  animation: ${easeIn} 0.7s ease-in forwards;
   will-change: auto;
-  transition: all 0.2s ease-in;
 
   @media only screen and (max-width: 979px) {
     grid-template-columns: repeat(auto-fill, minmax(24rem, 27rem));
@@ -40,16 +39,12 @@ export const MovieWrapper = styled.div`
   }
 
   @media only screen and (max-width: 475px) {
-    grid-template-columns: repeat(auto-fill, min(24rem, 40rem));
-  }
-
-  @media only screen and (max-width: 424px) {
-    grid-template-columns: repeat(auto-fill, 22rem);
+    grid-template-columns: repeat(auto-fill, 46rem);
   }
 
   @media only screen and (max-width: 394px) {
     grid-gap: 3rem;
-    grid-template-columns: repeat(auto-fill, 40rem);
+    grid-template-columns: repeat(auto-fill, 45rem);
   }
 `;
 
