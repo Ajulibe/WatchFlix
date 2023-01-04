@@ -2,10 +2,14 @@
 
 Add the following env to your .env file
 
+```js
+
 REACT_APP_MOVIE_DB_API_KEY=
 REACT_APP_API_DOMAIN=
 REACT_APP_API_BASE_IMAGE_URL=
 REACT_APP_API_BASE_IMAGE_URL_REDUCED=
+
+```
 
 ## WATCH FLIX
 
