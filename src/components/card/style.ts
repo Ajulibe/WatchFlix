@@ -33,7 +33,7 @@ export const Card = styled.div`
   }
   @media only screen and (max-width: 789px) {
     &:hover {
-      border: none;
+      border: 1px solid ${COLORS.mininalGrey};
       box-shadow: none;
       img {
         transform: unset;
