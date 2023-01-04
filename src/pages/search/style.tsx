@@ -39,12 +39,7 @@ export const MovieWrapper = styled.div`
   }
 
   @media only screen and (max-width: 475px) {
-    grid-template-columns: repeat(auto-fill, 46rem);
-  }
-
-  @media only screen and (max-width: 394px) {
-    grid-gap: 3rem;
-    grid-template-columns: repeat(auto-fill, 45rem);
+    grid-template-columns: repeat(auto-fill, 42rem);
   }
 `;
 
