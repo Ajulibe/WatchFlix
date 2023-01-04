@@ -3,56 +3,53 @@ import { easeIn } from "utils/animations";
 import { COLORS } from "utils/colors";
 
 export const MovieWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 2rem;
-  column-gap: 1rem;
-  justify-content: space-between;
-  align-self: center;
-  animation: ${easeIn} 0.7s ease-in-out 0.4s forwards;
+  justify-content: center;
+  opacity: 0;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 28rem));
+  animation: ${easeIn} 0.7s ease-in 0.4s forwards;
   will-change: auto;
   transition: all 0.2s ease-in;
-  opacity: 0;
 
-  &:after {
-    content: "";
-    margin-left: 28rem;
+  @media only screen and (max-width: 979px) {
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 27rem));
   }
 
-  @media only screen and (max-width: 991px) {
-    max-width: 80rem;
-
-    &:after {
-      margin-left: 24rem;
-    }
+  @media only screen and (max-width: 946px) {
+    grid-template-columns: repeat(auto-fill, 24rem);
+  }
+  @media only screen and (max-width: 846px) {
+    grid-template-columns: repeat(auto-fill, 22rem);
   }
 
-  @media only screen and (max-width: 824px) {
-    max-width: 60rem;
-    &:after {
-      margin-left: 28rem;
-    }
+  @media only screen and (max-width: 779px) {
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 27rem));
   }
 
   @media only screen and (max-width: 651px) {
-    &:after {
-      margin-left: 22rem;
-    }
+    grid-template-columns: repeat(auto-fill, 30rem);
   }
 
-  @media only screen and (max-width: 648px) {
-    max-width: 80rem;
+  @media only screen and (max-width: 526px) {
+    grid-template-columns: repeat(auto-fill, min(29rem, 40rem));
   }
 
-  @media only screen and (max-width: 574px) {
-    max-width: 60rem;
+  @media only screen and (max-width: 508px) {
+    grid-template-columns: repeat(auto-fill, min(27rem, 40rem));
   }
 
-  @media only screen and (max-width: 449px) {
-    justify-content: center;
-    .card {
-      margin-bottom: 2rem;
-    }
+  @media only screen and (max-width: 475px) {
+    grid-template-columns: repeat(auto-fill, min(24rem, 40rem));
+  }
+
+  @media only screen and (max-width: 424px) {
+    grid-template-columns: repeat(auto-fill, 22rem);
+  }
+
+  @media only screen and (max-width: 394px) {
+    grid-gap: 3rem;
+    grid-template-columns: repeat(auto-fill, 40rem);
   }
 `;
 

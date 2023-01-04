@@ -29,20 +29,11 @@ export const Card = styled.div`
   }
 
   @media only screen and (max-width: 991px) {
-    width: 24rem;
-  }
-
-  @media only screen and (max-width: 824px) {
-    width: 28rem;
+    width: 100%;
   }
 
   @media only screen and (max-width: 651px) {
-    width: 22rem;
-    height: 30.8rem;
-  }
-
-  @media only screen and (max-width: 574px) {
-    width: 26rem;
+    height: 36.8rem;
   }
 
   @media only screen and (max-width: 520px) {
@@ -51,13 +42,7 @@ export const Card = styled.div`
     }
   }
 
-  @media only screen and (max-width: 449px) {
-    width: 34rem;
-    height: 44.8rem;
-  }
-
-  @media only screen and (max-width: 393px) {
-    width: 40rem;
+  @media only screen and (max-width: 394px) {
     height: 50rem;
   }
 `;

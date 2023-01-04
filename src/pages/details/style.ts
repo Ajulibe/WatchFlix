@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { COLORS } from "utils/colors";
 import { easeIn, grow } from "utils/animations";
+import { FONTS } from "utils/fonts";
 
 export const Container = styled.div`
   width: 100%;
@@ -24,7 +25,7 @@ export const ModalTitle = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-top: 2rem;
-  font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
+  font-family: ${FONTS.primary}
   overflow: hidden;
 
   div {
@@ -70,7 +71,7 @@ export const ModalDetails = styled.div`
   line-height: 3rem;
   margin-top: 3.4rem;
   text-align: justify;
-  font-family: "Helvetica Neue", Baskervville, serif, Arial, Helvetica, sans-serif;
+  font-family: ${FONTS.primary};
 
   .header__container {
     width: 100%;

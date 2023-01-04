@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, useLayoutEffect, useEffect } from "react";
+import { FC, useCallback, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, ModalDetails, ModalImage, ModalTitle } from "./style";
 import config from "config";
@@ -25,9 +25,9 @@ const Details: FC = () => {
     if (typeof item === "undefined") {
       return navigate("/results");
     }
-  }, []);
+  }, [state]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     void getCastList();
   }, [getCastList]);
 

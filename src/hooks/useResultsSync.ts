@@ -1,10 +1,25 @@
-/*eslint-disable*/
-import React, { useCallback, useLayoutEffect, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+  useRef,
+  useState,
+  MutableRefObject
+} from "react";
 import { getMovies } from "api";
 import debounce from "lodash/debounce";
 import type { Results } from "types";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { useSessionStorage } from "hooks/useSessionStorage";
+
+interface IValue {
+  movies: Results[];
+  isLoading: boolean;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  selectEmission: (e: React.FormEvent<HTMLSelectElement>) => void;
+  isMounted: MutableRefObject<boolean>;
+  emissionType: string;
+}
 
 /**
  *
@@ -14,24 +29,25 @@ import { useSessionStorage } from "hooks/useSessionStorage";
  *
  */
 
-export const useResultsSync = () => {
-  const [searchedTerm, setSearchedTerm] = useState("christmas");
+export const useResultsSync = (): IValue => {
+  const [searchedTerm, setSearchedTerm] = useState("");
   const [movies, setMovies] = useState<Results[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const isMounted = useRef<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const queryValue = searchParams.get("query");
+  const queryString = searchParams.get("query");
   const debounceDelay = useRef(300);
   const [value, setValue] = useSessionStorage("emissionType", "");
   const [emissionType, setEmissionType] = useState<string>((): string =>
     value !== "" ? value : "movie"
   );
+  const queryValue = queryString?.includes("/") ? queryString?.split("/")[0] : queryString;
 
-  /*=============================================
+  /* =============================================
 =            Get Movies/Series List            =
-=============================================*/
+============================================= */
   const fetchMovies = useCallback(
     async (
       emission: string,
@@ -49,9 +65,9 @@ export const useResultsSync = () => {
   );
 
   const debouncedFetchMovies = useCallback(
-    debounce(async (emissionType, searchTerm: string, cb) => {
+    debounce(async (selectedEmission, searchTerm: string, cb) => {
       try {
-        await fetchMovies(emissionType, searchTerm, cb);
+        await fetchMovies(selectedEmission, searchTerm, cb);
       } catch (error) {
       } finally {
         setIsLoading(false);
@@ -92,27 +108,27 @@ export const useResultsSync = () => {
       }, 200);
     }
 
-    if (isMounted.current === false) {
+    if (!isMounted.current) {
       if (queryValue) {
         navigate({
           pathname: "/results",
-          search: `?query=${queryValue}`
+          search: `?query=${queryValue}/${emissionType}`
         });
         setIsLoading(true);
-        debouncedFetchMovies(emissionType, queryValue, (res: Results[]) => {
+        void debouncedFetchMovies(emissionType, queryValue, (res: Results[]) => {
           setMovies(res);
         });
       } else {
-        debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
+        void debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
           setMovies(res);
         });
       }
     } else {
       setIsLoading(true);
-      debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
+      void debouncedFetchMovies(emissionType, searchedTerm, (res: Results[]) => {
         setMovies(res);
       });
-      setSearchParams(`?query=${searchedTerm}`);
+      setSearchParams(`?query=${searchedTerm}/${emissionType}`);
     }
   }, [searchedTerm, emissionType]);
 

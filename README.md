@@ -1,47 +1,46 @@
-# Getting Started with Create React App
+## Installation instructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Add the following env to your .env file
 
-## Available Scripts
+REACT_APP_MOVIE_DB_API_KEY=
+REACT_APP_API_DOMAIN=
+REACT_APP_API_BASE_IMAGE_URL=
+REACT_APP_API_BASE_IMAGE_URL_REDUCED=
 
-In the project directory, you can run:
+## WATCH FLIX
 
-### `npm start`
+A simple movie/tv show concept application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**UI Library – React/Styled Components**
+Styled Components is chosen to simplify building reusable and flexible UI components.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**State Management**
+Prop-drilling is used. Alternatively, Context could be used to avoid this, However, this comes with its own performance issues as more optimisations will have to be done to avoid unnecessary re-rendering. This is a concept application. Prop-drilling is sufficient at this scale.
 
-### `npm test`
+**Code Quality and maintainability.**
+The application is fully bootstrapped with ES-Lint, Prettier and husky to ensure code quality.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Architecture**
+The architecture/structure is made to be clear for maintainability and scalability. Raw strings are avoided at all costs and the main routes are present in the ***/pages*** directory.
 
-### `npm run build`
+## Pages.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+***/Home***
+The home Page is a simple Landing Page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**/Search**
+This shows a list of all the movies (both recent and searched). The search state is fully synchronised with the URL. In the is way, the link is shareable across different users.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For the synchronisation, I choose to implement the logic from scratch using ***useEffect***, ***useNavigation*** and ***useLocation*** and ***sessionStorage***.  The logic is contained in the **hooks/useResultsSync** directory. Alternatively, Aloglia’s react-instant-search can be used as it already contains a fully managed index of [https://www.themoviedb.org/](https://www.themoviedb.org/). However, for the sake of technical assessment, I decided to come off with sort of my naïve interpretation of how state-URL sync could work. For larger scale applications, the later may be more performant.
 
-### `npm run eject`
+**Optimisations:**
+The following optimisations have been made.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1) Lazy loading the images using ***react-lazy-load-image-component**.* Alternatively, the* lazy loading could be achieved using the lazy attribute on the html native img tag. I chose not to do this as the attribute doesn’t have general acceptance across all* browsers according to [*https://caniuse.com/loading-lazy-attr](https://caniuse.com/loading-lazy-attr)*.* Also, I need other effects like the blur effect that helps to achieve a better UX.
+2) I made a performance checking using react profiler to see components that were re-rendered unnecessarily. I compared the time-to-render for both optimised and optimised versions and then decided which components needed a ***React.Memo***.
+3) Animations are used in the project, but animations could be expensive too. I made use of the ***will-change*** property to tell the browser ahead of time of a possible animation.
+4) Anonymous functions passed as callbacks were wrapped in a ***useCallback*** hook to ensure consistent function reference across re-renders.
+5) Search is debounced to avoid making continuous api calls on each key press. The returned debounce function is memorized using a ***useCallback*** hook.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# WatchFlix
+**App Layout.**
+The entire app is wrapped in a layout component to which is suspended using Suspense from react. This helps to provide a better and smoother UX.

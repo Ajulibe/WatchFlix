@@ -11,7 +11,9 @@ interface IProps {
 
 export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission, emissionType }) => {
   const [searchParams] = useSearchParams();
-  const queryValue = searchParams.get("query");
+  const queryString = searchParams.get("query");
+  const queryValue = queryString?.includes("/") ? queryString?.split("/")[0] : queryString;
+  const selectedOption = queryString?.split("/")[1] ?? emissionType;
 
   const emisionsData = [
     {
@@ -27,7 +29,7 @@ export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission, emiss
   return (
     <div style={{ overflow: "hidden" }}>
       <Container>
-        <select name="emissionOptions" value={emissionType} onChange={selectEmission}>
+        <select name="emissionOptions" value={selectedOption} onChange={selectEmission}>
           {emisionsData.map((item, index) => (
             <option key={`${item.value}-${index}`} value={item.value}>
               {item.name}

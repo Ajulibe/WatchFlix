@@ -1,10 +1,7 @@
 import axios from "axios";
 import config from "config";
 
-export async function getMovies(
-  emissionType: string,
-  searchTerm: string = "christmas"
-): Promise<unknown> {
+export async function getMovies(emissionType: string, searchTerm: string): Promise<unknown> {
   let response;
   try {
     // get recent movie lists if there is no search term
