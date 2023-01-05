@@ -33,12 +33,22 @@ describe("Testing Search Page", () => {
     jest.resetAllMocks();
   });
 
-  test("accepts a search term", async () => {
-    const inputElement = screen.getByTestId("search-input");
-    await waitFor(() => userEvent.type(inputElement, "cruella"));
-    expect(screen.getByTestId("search-input")).toHaveValue("cruella");
-    expect(screen.queryByTestId("error-message")).not.toBeInTheDocument();
-  });
+  const locationObject = {
+    state: {
+      emissionType: "movie",
+      item: {
+        id: 436969,
+        original_title: "The Suicide Squad",
+        overview:
+          "Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.",
+        popularity: 3692.281,
+        poster_path: "/iXbWpCkIauBMStSTUT9v4GXvdgH.jpg",
+        release_date: "2021-07-28",
+        title: "The Suicide Squad",
+        vote_average: 8
+      }
+    }
+  };
 
   test("check that api is called when Screen page is rendered", async () => {
     expect(screen.queryByTestId("header")).toBeInTheDocument();
@@ -46,7 +56,24 @@ describe("Testing Search Page", () => {
     const rowValues = await waitFor(() => screen.getAllByTestId("card").map((row) => row));
     const header = screen.getByText("The Suicide Squad");
     expect(rowValues[0]).toContainElement(header);
-    expect(axios.get).toHaveBeenCalledTimes(2);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+  });
+
+  test("accepts a search term", async () => {
+    const inputElement = screen.getByTestId("search-input");
+    await waitFor(() => userEvent.type(inputElement, "cruella"));
+    expect(screen.getByTestId("search-input")).toHaveValue("cruella");
+    expect(screen.queryByTestId("error-message")).not.toBeInTheDocument();
+  });
+
+  test("test select tag is working", () => {
+    userEvent.selectOptions(
+      screen.getByRole("combobox"),
+      screen.getByRole("option", { name: "Movies" })
+    );
+    expect((screen.getByRole("option", { name: "Movies" }) as HTMLOptionElement).selected).toBe(
+      true
+    );
   });
 
   test("loading spinner is shown while API request is in progress", async () => {
@@ -61,5 +88,9 @@ describe("Testing Search Page", () => {
     const firstCard = await waitFor(() => screen.getAllByTestId("card").map((row) => row));
     userEvent.click(firstCard[0]);
     expect(mockedUsedNavigate).toBeCalledTimes(1);
+    expect(mockedUsedNavigate).toBeCalledWith(
+      "/results/436969",
+      expect.objectContaining({ ...locationObject })
+    );
   });
 });

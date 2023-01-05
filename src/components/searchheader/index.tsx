@@ -29,9 +29,14 @@ export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission, emiss
   return (
     <div style={{ overflow: "hidden" }}>
       <Container>
-        <select name="emissionOptions" value={selectedOption} onChange={selectEmission}>
+        <select
+          name="emissionOptions"
+          value={selectedOption}
+          onChange={selectEmission}
+          data-testid="select"
+        >
           {emisionsData.map((item, index) => (
-            <option key={`${item.value}-${index}`} value={item.value}>
+            <option key={`${item.value}-${index}`} value={item.value} data-testid="select-option">
               {item.name}
             </option>
           ))}
