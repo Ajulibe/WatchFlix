@@ -22,8 +22,8 @@ export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) =>
             delayTime={1000}
             title={emisionTitle}
             effect="blur"
-            width={700}
-            height={500}
+            width={280}
+            height={310}
             src={`${config.IMAGE_BASE_URL}${item?.poster_path}`}
             alt={emisionTitle}
             placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.poster_path}`}
