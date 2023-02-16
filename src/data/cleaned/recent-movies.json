@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "title": "Black Panther: Wakanda Forever",
+    "recommended": "true",
+    "author": {
+      "id": 1,
+      "name": "John Doe"
+    },
+    "poster_path": "/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+    "releaseDate": "2022-11-09",
+    "type": "ACTION"
+  },
+  {
+    "id": 2,
+    "title": "Babylon",
+    "recommended": "true",
+    "author": {
+      "id": 2,
+      "name": "Jane Smith"
+    },
+    "poster_path": "/wjOHjWCUE0YzDiEzKv8AfqHj3ir.jpg",
+    "releaseDate": "2022-12-22",
+    "type": "DRAMA"
+  },
+  {
+    "id": 3,
+    "title": "Plane",
+    "recommended": "false",
+    "author": {
+      "id": 3,
+      "name": "Bob Johnson"
+    },
+    "poster_path": "/2g9ZBjUfF1X53EinykJqiBieUaO.jpg",
+    "releaseDate": "2023-01-13",
+    "type": "DRAMA"
+  },
+  {
+    "id": 4,
+    "title": "Avatar: The Way of Water",
+    "recommended": "true",
+    "author": {
+      "id": 4,
+      "name": "Alice Williams"
+    },
+    "poster_path": "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
+    "releaseDate": "2022-12-14",
+    "type": "SCI-FI"
+  },
+  {
+    "id": 5,
+    "title": "Ant-Man and the Wasp: Quantumania",
+    "recommended": "false",
+    "author": {
+      "id": 5,
+      "name": "Tom Davis"
+    },
+    "poster_path": "/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg",
+    "releaseDate": "2023-02-10",
+    "type": "COMEDY"
+  },
+  {
+    "id": 6,
+    "title": "M3GAN",
+    "recommended": "true",
+    "author": {
+      "id": 6,
+      "name": "Sarah Johnson"
+    },
+    "poster_path": "/d9nBoowhjiiYc4FBNtQkPY7c11H.jpg",
+    "releaseDate": "2022-12-28",
+    "type": "HORROR"
+  },
+  {
+    "id": 7,
+    "title": "Your Place or Mine",
+    "recommended": false,
+    "author": {
+      "id": 7,
+      "name": "John Smith"
+    },
+    "poster_path": "/ApkSeqfIPRCxOtfjXYYE6Ji7jVU.jpg",
+    "releaseDate": "2023-02-10",
+    "type": "DRAMA"
+  },
+  {
+    "id": 8,
+    "title": "Whitney Houston: I Wanna Dance with Somebody",
+    "recommended": false,
+    "author": {
+      "id": 8,
+      "name": "Jane Doe"
+    },
+    "poster_path": "/oodPJ3Op1pWBhnEFyw5fampRCWf.jpg",
+    "releaseDate": "2022-12-20",
+    "type": "COMEDY"
+  },
+  {
+    "id": 9,
+    "title": "Empire of Light",
+    "recommended": false,
+    "author": {
+      "id": 9,
+      "name": "Bob Johnson"
+    },
+    "poster_path": "/h84SnIQF91Gz2Fv1OpMJ3245t4i.jpg",
+    "releaseDate": "2022-12-09",
+    "type": "DRAMA"
+  },
+  {
+    "id": 10,
+    "title": "Shotgun Wedding",
+    "recommended": true,
+    "author": {
+      "id": 10,
+      "name": "Sarah Lee"
+    },
+    "poster_path": "/t79ozwWnwekO0ADIzsFP1E5SkvR.jpg",
+    "releaseDate": "2022-12-28",
+    "type": "ACTION"
+  },
+  {
+    "id": 11,
+    "title": "Somebody I Used to Know",
+    "recommended": false,
+    "author": {
+      "id": 11,
+      "name": "Emily Smith"
+    },
+    "poster_path": "/ovHxxphDgjyEpYriDoGoIHfrdZL.jpg",
+    "releaseDate": "2023-02-10",
+    "type": "ROMANCE"
+  },
+  {
+    "id": 12,
+    "title": "Titanic",
+    "recommended": true,
+    "author": {
+      "id": 12,
+      "name": "Tom Johnson"
+    },
+    "poster_path": "/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+    "releaseDate": "1997-11-18",
+    "type": "DRAMA"
+  },
+  {
+    "id": 13,
+    "title": "Teen Wolf: The Movie",
+    "recommended": true,
+    "author": {
+      "id": 13,
+      "name": "Lucy Williams"
+    },
+    "poster_path": "/wAkpPm3wcHRqZl8XjUI3Y2chYq2.jpg",
+    "releaseDate": "2023-01-18",
+    "type": "HORROR"
+  },
+  {
+    "id": 14,
+    "title": "Puss in Boots: The Last Wish",
+    "recommended": "true",
+    "author": {
+      "id": 14,
+      "name": "Will Davis"
+    },
+    "poster_path": "/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
+    "releaseDate": "2022-12-07",
+    "type": "ANIMATION"
+  },
+  {
+    "id": 15,
+    "title": "Vikingulven",
+    "recommended": false,
+    "author": {
+      "id": 15,
+      "name": "John Doe"
+    },
+    "poster_path": "/9CxWs95VQWlOAdgE0iadrz3RPwH.jpg",
+    "releaseDate": "2022-11-18",
+    "type": "HORROR"
+  },
+  {
+    "id": 16,
+    "title": "Top Gun: Maverick",
+    "recommended": true,
+    "author": {
+      "id": 16,
+      "name": "Jane Smith"
+    },
+    "poster_path": "/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+    "releaseDate": "2022-05-24",
+    "type": "ACTION"
+  },
+  {
+    "id": 17,
+    "title": "Knock at the Cabin",
+    "recommended": false,
+    "author": {
+      "id": 17,
+      "name": "David Johnson"
+    },
+    "poster_path": "/dm06L9pxDOL9jNSK4Cb6y139rrG.jpg",
+    "releaseDate": "2023-02-01",
+    "type": "DRAMA"
+  },
+  {
+    "id": 18,
+    "title": "Everything Everywhere All at Once",
+    "recommended": true,
+    "author": {
+      "id": 18,
+      "name": "Sarah Williams"
+    },
+    "poster_path": "/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg",
+    "releaseDate": "2022-03-24",
+    "type": "COMEDY"
+  },
+  {
+    "id": 19,
+    "title": "The Menu",
+    "recommended": true,
+    "author": {
+      "id": 19,
+      "name": "Michael Brown"
+    },
+    "poster_path": "/fPtUgMcLIboqlTlPrq0bQpKK8eq.jpg",
+    "releaseDate": "2022-11-17",
+    "type": "ROMANCE"
+  },
+  {
+    "id": 20,
+    "title": "True Spirit",
+    "recommended": false,
+    "author": {
+      "id": 20,
+      "name": "Karen Davis"
+    },
+    "poster_path": "/B7m21gukMeVK3NAuk1PLCo9C8p.jpg",
+    "releaseDate": "2023-01-26",
+    "type": "DRAMA"
+  }
+]

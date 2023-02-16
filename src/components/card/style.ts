@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { easeIn } from "utils/animations";
 import { COLORS } from "utils/colors";
 import { FONTS } from "utils/fonts";
+import { easeIn } from "utils/animations";
+import styled from "@emotion/styled";
 
 export const Card = styled.div`
   width: 28rem;
@@ -106,6 +106,16 @@ export const MovieTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   padding: 10px 13px 13px 13px;
   font-family: ${FONTS.primary};
+
+  .rating {
+    background-color: transparent;
+    box-shadow: none;
+    outline: none;
+    width: 20px !important;
+    display: flex;
+    align-items: center;
+  }
 `;

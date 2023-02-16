@@ -1,7 +1,8 @@
+import { Container, Input, InputWrapper } from "./style";
 import React, { ChangeEvent } from "react";
-import { Input, InputWrapper, Container } from "./style";
-import { useSearchParams } from "react-router-dom";
+
 import searchIcon from "assets/search-icon.svg";
+import { useParams } from "react-router-dom";
 
 interface IProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -10,8 +11,8 @@ interface IProps {
 }
 
 export const SearchHeader: React.FC<IProps> = ({ onChange, selectEmission, emissionType }) => {
-  const [searchParams] = useSearchParams();
-  const queryString = searchParams.get("query");
+  const { query } = useParams<{ query: string }>();
+  const queryString = query;
   const queryValue = queryString?.includes("/") ? queryString?.split("/")[0] : queryString;
   const selectedOption = queryString?.split("/")[1] ?? emissionType;
 

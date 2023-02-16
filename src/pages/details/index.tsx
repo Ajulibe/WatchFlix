@@ -1,45 +1,47 @@
-import { FC, useCallback, useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+/*eslint-disable*/
 import { Container, ModalDetails, ModalImage, ModalTitle } from "./style";
-import config from "config";
-import moment from "moment";
+import { FC, useCallback, useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { getCast } from "api";
 import { PagesWrapper } from "layout";
+import config from "config";
+import { getCast } from "api";
+import moment from "moment";
 
 const Details: FC = () => {
   const [cast, setCast] = useState([]);
-  const navigate = useNavigate();
-  const { state } = useLocation();
-  const item = state?.item;
-  const emissionType = state?.emissionType;
+  const history = useHistory();
+  // const location = useLocation();
+  // const item = location.state?.item;
+  // const emissionType = location.state?.emissionType;
 
-  const getCastList = useCallback(async () => {
-    try {
-      const { data }: any = await getCast(emissionType, item.id);
-      setCast(data.cast);
-    } catch (error) {}
-  }, []);
+  // const getCastList = useCallback(async () => {
+  //   try {
+  //     const { data }: any = await getCast(emissionType, item.id);
+  //     setCast(data.cast);
+  //   } catch (error) {}
+  // }, []);
 
-  useEffect(() => {
-    if (typeof item === "undefined") {
-      return navigate("/results");
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if (typeof item === "undefined") {
+  //     return history.push("/results");
+  //   }
+  // }, [state]);
 
-  useEffect(() => {
-    void getCastList();
-  }, [getCastList]);
+  // useEffect(() => {
+  //   void getCastList();
+  // }, [getCastList]);
 
-  const releaseDate =
-    emissionType === "tv"
-      ? String(moment(item?.first_air_date, "YYYY-MM-DD").year())
-      : String(moment(item?.release_date, "YYYY-MM-DD").year());
+  // const releaseDate =
+  //   emissionType === "tv"
+  //     ? String(moment(item?.first_air_date, "YYYY-MM-DD").year())
+  //     : String(moment(item?.release_date, "YYYY-MM-DD").year());
 
   return (
     <PagesWrapper>
       <Container className="content-container">
-        {item?.backdrop_path && (
+        {/* {item?.backdrop_path && (
           <ModalImage>
             <LazyLoadImage
               alt={item?.original_title}
@@ -48,26 +50,26 @@ const Details: FC = () => {
               effect="blur"
             />
           </ModalImage>
-        )}
+        )} */}
 
         <ModalTitle>
-          <div>
+          {/* <div>
             <span className="movie__title">{item?.title}</span>
             <div>
               <span className="movie__rating">{Number(item?.vote_average).toFixed(1)}</span>
               &nbsp; &nbsp; &nbsp; &nbsp;
               <span className="movie__year">{releaseDate}</span>
             </div>
-          </div>
+          </div> */}
         </ModalTitle>
 
         <ModalDetails>
-          <div className="header__container">
+          {/* <div className="header__container">
             <div className="header">
               <b>Summary</b>
             </div>
             {item?.overview}
-          </div>
+          </div> */}
         </ModalDetails>
 
         {cast.length > 0 && (

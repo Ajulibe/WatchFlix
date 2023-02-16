@@ -1,0 +1,230 @@
+[
+  {
+    "id": 1,
+    "title": "House",
+    "recommended": false,
+    "author": {
+      "id": 1,
+      "name": "John Smith"
+    },
+    "poster_path": "/ysIPmxLVYYvTUaOwEsLjF7nEf4C.jpg",
+    "releaseDate": "1986-02-27",
+    "type": "HORROR"
+  },
+  {
+    "id": 2,
+    "title": "House",
+    "recommended": false,
+    "author": {
+      "id": 2,
+      "name": "Jane Doe"
+    },
+    "poster_path": "/5QPnbZLJIO1r6vP9Uejf96V1U1w.jpg",
+    "releaseDate": "2008-11-06",
+    "type": "HORROR"
+  },
+  {
+    "id": 3,
+    "title": "HOUSE",
+    "recommended": true,
+    "author": {
+      "id": 3,
+      "name": "John Johnson"
+    },
+    "poster_path": "/awHCV8PRDeA66RFlnEXANAx2Hpi.jpg",
+    "releaseDate": "",
+    "type": "COMEDY"
+  },
+  {
+    "id": 4,
+    "title": "HOUSE",
+    "recommended": false,
+    "author": {
+      "id": 4,
+      "name": "Jane Smith"
+    },
+    "poster_path": null,
+    "releaseDate": "",
+    "type": "COMEDY"
+  },
+  {
+    "id": 5,
+    "title": "House",
+    "recommended": false,
+    "author": {
+      "id": 5,
+      "name": "John Doe"
+    },
+    "poster_path": "/aCHv1T0kcsk5k5aOet9kefStSxb.jpg",
+    "releaseDate": "2010-02-17",
+    "type": "ROMANCE"
+  },
+  {
+    "id": 6,
+    "title": "House",
+    "recommended": false,
+    "author": {
+      "id": 6,
+      "name": "Jane Johnson"
+    },
+    "poster_path": "/oj8R1DrSqt7el42XHol3YW6hNK2.jpg",
+    "releaseDate": "2007-03-21",
+    "type": "DRAMA"
+  },
+  {
+    "id": 7,
+    "title": "House",
+    "recommended": false,
+    "author": {
+      "id": 7,
+      "name": "John Smith"
+    },
+    "poster_path": "/v612ukb7I6g0cAgvCnABaZnj1eZ.jpg",
+    "releaseDate": "1995-01-01",
+    "type": "DRAMA"
+  },
+  {
+    "id": 8,
+    "title": "HOUSE",
+    "recommended": false,
+    "author": {
+      "id": 8,
+      "name": "Jane Doe"
+    },
+    "poster_path": "/m9d4lMEqvxJC01AqPfD1DaDSGSi.jpg",
+    "releaseDate": "",
+    "type": "HORROR"
+  },
+  {
+    "id": 9,
+    "title": "House",
+    "recommended": false,
+    "author": {
+      "id": 9,
+      "name": "John Doe"
+    },
+    "poster_path": null,
+    "releaseDate": "2002-08-31",
+    "type": "ACTION"
+  },
+  {
+    "id": 10,
+    "title": "House Party",
+    "recommended": true,
+    "author": {
+      "id": 10,
+      "name": "Jane Smith"
+    },
+    "poster_path": "/KiyKR9m6h01eIvGObGmpt16U3F.jpg",
+    "releaseDate": "2023-01-12",
+    "type": "DRAMA"
+  },
+  {
+    "id": 11,
+    "title": "The Painted House",
+    "recommended": false,
+    "author": {
+      "id": 11,
+      "name": "Bob Johnson"
+    },
+    "poster_path": "/milQQcApBicb9x4ishCMA5zYz8c.jpg",
+    "releaseDate": "2015-12-04",
+    "type": "COMEDY"
+  },
+  {
+    "id": 12,
+    "title": "House!",
+    "recommended": true,
+    "author": {
+      "id": 12,
+      "name": "Mary Brown"
+    },
+    "poster_path": null,
+    "releaseDate": "2000-01-01",
+    "type": "ROMANCE"
+  },
+  {
+    "id": 13,
+    "title": "The House of the Lost on the Cape",
+    "recommended": false,
+    "author": {
+      "id": 13,
+      "name": "David Lee"
+    },
+    "poster_path": "/5afJWPrNwm7a220mOccwB30PCOq.jpg",
+    "releaseDate": "2021-08-27",
+    "type": "HORROR"
+  },
+  {
+    "id": 14,
+    "title": "Housekeeper",
+    "recommended": false,
+    "author": {
+      "id": 14,
+      "name": "Sarah Davis"
+    },
+    "poster_path": "/ff3HhJwfKPPLCqYMg9whlSNwIob.jpg",
+    "releaseDate": "2020-03-26",
+    "type": "ACTION"
+  },
+  {
+    "id": 15,
+    "title": "Constantine: The House of Mystery",
+    "recommended": true,
+    "author": {
+      "id": 15,
+      "name": "Tom Wilson"
+    },
+    "poster_path": "/kqYDoEb9PxLXM2ccoHInMMJalti.jpg",
+    "releaseDate": "2022-05-02",
+    "type": "DRAMA"
+  },
+  {
+    "id": 16,
+    "title": "House of Flying Daggers",
+    "recommended": true,
+    "author": {
+      "id": 16,
+      "name": "Karen Chen"
+    },
+    "poster_path": "/lMwVwfPTVbpMScANktbD7NmMFCi.jpg",
+    "releaseDate": "2004-05-19",
+    "type": "COMEDY"
+  },
+  {
+    "id": 17,
+    "title": "House of the Rising Sun",
+    "recommended": "false",
+    "author": { "id": 17, "name": "John Doe" },
+    "poster_path": "/nstOSqjuutx0nbDBom24dGwMTbD.jpg",
+    "releaseDate": "2011-07-19",
+    "type": "ACTION"
+  },
+  {
+    "id": 18,
+    "title": "The House",
+    "recommended": "true",
+    "author": { "id": 18, "name": "Jane Doe" },
+    "poster_path": "/iZjMFSKCrleKolC1gYcz5Rs8bk1.jpg",
+    "releaseDate": "2022-01-14",
+    "type": "DRAMA"
+  },
+  {
+    "id": 19,
+    "title": "The Housemaid",
+    "recommended": "false",
+    "author": { "id": 19, "name": "David Smith" },
+    "poster_path": "/yFZc1A26WAVmZJrYrX713ULStUp.jpg",
+    "releaseDate": "2010-05-13",
+    "type": "COMEDY"
+  },
+  {
+    "id": 20,
+    "title": "Housekeeper - My Wife's Friend",
+    "recommended": "false",
+    "author": { "id": 20, "name": "Emma Johnson" },
+    "poster_path": "/k5vIKo60IUrqsbeWu6vJuECIte4.jpg",
+    "releaseDate": "2019-10-11",
+    "type": "ROMANCE"
+  }
+]

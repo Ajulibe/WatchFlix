@@ -6,6 +6,7 @@ export enum COLORS {
   white = "#ffffff",
   placeholderColor = "#898E9A",
   primary = "rgba(236,54,85)",
+  primaryHover = "rgba(236,54,85, 0.9)",
   backdrop = "rgba(0, 0, 0, 0.7)",
   cardShadow = "rgba(255, 255, 255, 0.1)",
   black200 = "rgba(0, 0, 0, 0.2)",

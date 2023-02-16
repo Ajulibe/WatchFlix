@@ -1,18 +1,19 @@
-import React from "react";
 import { Card, CardPreview, MovieTitle } from "./style";
-import config from "config";
-import type { Results } from "types";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PlaceHolderImage } from "components/placeholder-image";
+import Rating from "components/rating";
+import React from "react";
+import type { Results } from "types";
+import config from "config";
 
 interface IProps {
   item: Results;
   onClick: () => void;
-  emissionType: string;
 }
 
-export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) => {
-  const emisionTitle = emissionType === "tv" ? item.original_name : item.original_title;
+export const CardWidget: React.FC<IProps> = ({ item, onClick }) => {
+  const emisionTitle = item.original_title;
 
   return (
     <Card key={item.id} onClick={onClick} className="card" data-testid="card">
@@ -25,7 +26,7 @@ export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) =>
             width={340}
             height={500}
             src={`${config.IMAGE_BASE_URL}${item?.poster_path}`}
-            alt={emisionTitle}
+            alt={"moives"}
             placeholderSrc={`${config.REDUCED_IMAGE_BASE_URL}${item?.poster_path}`}
             placeholder={<PlaceHolderImage />}
           />
@@ -35,6 +36,14 @@ export const CardWidget: React.FC<IProps> = ({ item, onClick, emissionType }) =>
       </CardPreview>
       <MovieTitle>
         <span>{emisionTitle}</span>
+        <Rating
+          size={16}
+          icon="star"
+          scale={5}
+          fillColor="gold"
+          strokeColor="grey"
+          className="rating"
+        />
       </MovieTitle>
     </Card>
   );

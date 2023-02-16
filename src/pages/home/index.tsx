@@ -1,4 +1,5 @@
-import { Container, Header, Caption, Wrapper } from "./style";
+import { Caption, Container, Header, Wrapper } from "./style";
+
 import { Link } from "react-router-dom";
 
 const Home = (): JSX.Element => {
@@ -12,7 +13,7 @@ const Home = (): JSX.Element => {
           movie marathon. So why wait? Start watching now and join the millions of satisfied
           subscribers already enjoying the best movies and TV shows.
         </Caption>
-        <Link to="/results" data-testid="browse-button">
+        <Link to="/auth" data-testid="browse-button">
           Browse
         </Link>
       </Wrapper>
