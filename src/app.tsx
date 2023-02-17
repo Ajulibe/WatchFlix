@@ -3,10 +3,8 @@ import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 
 /*eslint-disable*/
-import DetailsPage from "pages/details";
 import LoginWidget from "auth/LoginWidget";
 import MoviesPage from "pages/movies";
-import React from "react";
 import { oktaConfig } from "lib/okta-config";
 
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -37,9 +35,6 @@ export const App = () => {
             <Route path="/auth" render={() => <LoginWidget config={oktaConfig} />} />
             <SecureRoute path="/movies">
               <MoviesPage />
-            </SecureRoute>
-            <SecureRoute path="/movies/:movieId">
-              <DetailsPage />
             </SecureRoute>
             <Route path="/login/callback" component={LoginCallback} />
           </Switch>

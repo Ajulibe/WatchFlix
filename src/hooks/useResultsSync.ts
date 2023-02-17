@@ -1,17 +1,19 @@
+import type { IRatings, Results } from "types";
 /*eslint-disable */
-import { getRecentMovies, getRecommendedMovies } from "api";
-import { useCallback, useEffect, useState } from "react";
-
-import type { Results } from "types";
+import { createRatings, getRatings, getRecentMovies, getRecommendedMovies } from "api";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface IValue {
   moviesData: Results[];
   isLoading: boolean;
+  saveRating: (data: IRatings) => void;
+  getMovieRatings: (movie_id: number) => void;
 }
 
 export const useResultsSync = (): IValue => {
   const [moviesData, setMoviesData] = useState<Results[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const isCalled = useRef(false);
 
   const fetchAllMovies = useCallback(async () => {
     setIsLoading(true);
@@ -23,9 +25,9 @@ export const useResultsSync = (): IValue => {
       //@ts-ignore
       setMoviesData([
         //@ts-ignore
-        { recentMovies: [...recentMovies.data.results] },
+        { recentMovies: [...recentMovies] },
         //@ts-ignore
-        { recommendedMovies: [...recommendedMovies.data.results] }
+        { recommendedMovies: [...recommendedMovies] }
       ]);
     } catch (error) {
       console.log(error);
@@ -34,12 +36,32 @@ export const useResultsSync = (): IValue => {
     }
   }, []);
 
+  const saveRating = async (data: IRatings) => {
+    if (isCalled.current) return;
+    isCalled.current = true;
+    try {
+      await createRatings(data);
+    } catch (error) {
+      return error;
+    } finally {
+      isCalled.current = false;
+    }
+  };
+
+  const getMovieRatings = useCallback(async (movie_id: number) => {
+    // const { data }: any = await getRatings(movie_id);
+    // console.log(data);
+    // return data?.averageRating || 0;
+  }, []);
+
   useEffect(() => {
     void fetchAllMovies();
   }, [fetchAllMovies]);
 
   return {
     moviesData,
-    isLoading
+    isLoading,
+    saveRating,
+    getMovieRatings
   };
 };

@@ -8,11 +8,12 @@ import {
   Title,
   TitleWrapper
 } from "./style";
+import React, { useCallback } from "react";
 
 import { Button } from "@chakra-ui/react";
 import { CardWidget } from "components/card";
+import { IRatings } from "types";
 import { PagesWrapper } from "layout";
-import React from "react";
 import { Spinner } from "components/spinner";
 import { useHistory } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
@@ -35,8 +36,10 @@ const HeaderText = React.memo(() => {
 HeaderText.displayName = "HeaderText";
 
 const Movies: React.FC = () => {
-  const { moviesData, isLoading } = useResultsSync();
+  const { moviesData, isLoading, saveRating, getMovieRatings } = useResultsSync();
   const recent = moviesData[0]?.recentMovies;
+  const recommended = moviesData[1]?.recommendedMovies;
+
   const { oktaAuth, authState } = useOktaAuth();
 
   if (!authState) {
@@ -44,6 +47,7 @@ const Movies: React.FC = () => {
   }
 
   const handleLogout = async () => oktaAuth.signOut();
+  const addRating = useCallback((data: IRatings) => saveRating(data), []);
 
   return (
     <PagesWrapper>
@@ -68,65 +72,49 @@ const Movies: React.FC = () => {
         <Header>Last Seen Movies</Header>
 
         <MovieWrapper>
-          {/* {movies.length === 0 && !isLoading && isMounted.current ? (
-            <Empty data-testid="error-message">NO RESULTS FOUND</Empty>
-          ) : null} */}
-          {/* {isLoading && <Spinner />} */}
-
-          {/* <Marquee> */}
           {!isLoading &&
             recent?.map((item: any) => {
               return (
                 <CardWidget
                   key={item.id}
                   item={item}
-                  onClick={() => {
-                    // history.push(`/results/${item.id}`);
-                  }}
+                  saveRating={addRating}
+                  getMovieRatings={getMovieRatings}
                 />
               );
             })}
-          {/* </Marquee> */}
+          {isLoading && <Spinner />}
         </MovieWrapper>
         <Header>Recent Movies</Header>
         <MovieWrapper>
-          {/* {movies.length === 0 && !isLoading && isMounted.current ? (
-            <Empty data-testid="error-message">NO RESULTS FOUND</Empty>
-          ) : null} */}
-          {/* {isLoading && <Spinner />} */}
-
-          {/* <Marquee> */}
           {!isLoading &&
             recent?.map((item: any) => {
               return (
                 <CardWidget
                   key={item.id}
                   item={item}
-                  onClick={() => {
-                    // history.push(`/results/${item.id}`);
-                  }}
+                  saveRating={addRating}
+                  getMovieRatings={getMovieRatings}
                 />
               );
             })}
-          {/* </Marquee> */}
+          {isLoading && <Spinner />}
         </MovieWrapper>
 
         <Header>Recommended Movies</Header>
         <MovieWrapper>
-          {/* <Marquee> */}
           {!isLoading &&
-            recent?.map((item: any) => {
+            recommended?.map((item: any) => {
               return (
                 <CardWidget
                   key={item.id}
                   item={item}
-                  onClick={() => {
-                    // history.push(`/results/${item.id}`);
-                  }}
+                  saveRating={addRating}
+                  getMovieRatings={getMovieRatings}
                 />
               );
             })}
-          {/* </Marquee> */}
+          {isLoading && <Spinner />}
         </MovieWrapper>
       </FlexContainer>
     </PagesWrapper>

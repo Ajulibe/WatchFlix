@@ -1,13 +1,35 @@
-/* eslint-disable */
+/*eslint-disable*/
+import Cookies from "js-cookie";
 import OktaSignInWidget from "./OktaSignInWidget";
-import { Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Spinner } from "components/spinner";
+import appConfig from "config";
+import axios from "axios";
+import { saveUserInfo } from "api";
 import { useOktaAuth } from "@okta/okta-react";
 
+// eslint-disable-next-line react/prop-types
 const LoginWidget = ({ config }) => {
   const { oktaAuth, authState } = useOktaAuth();
 
   const onSuccess = (tokens) => {
+    const accessToken: string = tokens.accessToken.accessToken;
+    Cookies.set(appConfig.REACT_APP_TOKEN, JSON.stringify(accessToken), {
+      secure: process.env.NODE_ENV !== "development"
+    });
+
+    // get user information after login
+    axios
+      .get(tokens.accessToken.userinfoUrl, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then((res) => {
+        const userDetails = res.data;
+        saveUserInfo(userDetails);
+      });
+
     oktaAuth.handleLoginRedirect(tokens);
   };
 
@@ -24,7 +46,7 @@ const LoginWidget = ({ config }) => {
   }
 
   return authState.isAuthenticated ? (
-    <Route path="/" element={<Navigate replace to="/" />} />
+    <Redirect to={{ pathname: "/" }} />
   ) : (
     <OktaSignInWidget config={config} onSuccess={onSuccess} onError={onError} />
   );

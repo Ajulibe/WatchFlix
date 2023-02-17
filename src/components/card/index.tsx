@@ -1,22 +1,32 @@
 import { Card, CardPreview, MovieTitle } from "./style";
+import type { IRatings, Results } from "types";
+import React, { useCallback, useEffect } from "react";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PlaceHolderImage } from "components/placeholder-image";
 import Rating from "components/rating";
-import React from "react";
-import type { Results } from "types";
 import config from "config";
 
 interface IProps {
   item: Results;
-  onClick: () => void;
+  saveRating: (data: IRatings) => void;
+  getMovieRatings: (movie_id: number) => void;
 }
 
-export const CardWidget: React.FC<IProps> = ({ item, onClick }) => {
+export const CardWidget: React.FC<IProps> = ({ item, saveRating, getMovieRatings }) => {
   const emisionTitle = item.original_title;
 
+  const fetchRatings = useCallback(async () => {
+    const response = await getMovieRatings(item.id);
+    console.log(response, "at the final card");
+  }, []);
+
+  useEffect(() => {
+    void fetchRatings();
+  }, [fetchRatings]);
+
   return (
-    <Card key={item.id} onClick={onClick} className="card" data-testid="card">
+    <Card key={item.id} className="card" data-testid="card">
       <CardPreview>
         {item.poster_path ? (
           <LazyLoadImage
@@ -37,12 +47,14 @@ export const CardWidget: React.FC<IProps> = ({ item, onClick }) => {
       <MovieTitle>
         <span>{emisionTitle}</span>
         <Rating
+          item={item}
           size={16}
           icon="star"
           scale={5}
           fillColor="gold"
           strokeColor="grey"
           className="rating"
+          setRating={saveRating}
         />
       </MovieTitle>
     </Card>

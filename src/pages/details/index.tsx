@@ -6,7 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { PagesWrapper } from "layout";
 import config from "config";
-import { getCast } from "api";
+// import { getCast } from "api";
 import moment from "moment";
 
 const Details: FC = () => {

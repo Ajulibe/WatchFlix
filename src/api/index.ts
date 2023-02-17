@@ -1,38 +1,36 @@
-import axios from "axios";
-import config from "config";
+import { IRatings } from "types";
+import { client } from "./client";
+
+export async function saveUserInfo(userDetails: any): Promise<unknown> {
+  const data: Record<string, string> = {
+    firstName: userDetails.given_name,
+    lastName: userDetails.family_name,
+    phoneNumber: "08012345678",
+    emailAddress: userDetails.email,
+    country: userDetails.zoneinfo.split("/")[0],
+    area: "Paris",
+    city: userDetails.zoneinfo.split("/")[1],
+    street: "rue de la paix",
+    streetNumber: "1",
+    userId: userDetails.email
+  };
+  return client("java", "store-details", { body: data });
+}
 
 export async function getRecommendedMovies(): Promise<unknown> {
-  let response;
-  try {
-    response = await axios.get(
-      `${config.API_BASE_URL}/search/movie?api_key=${config.API_KEY}&language=en-US&query=house&sort_by=popularity.desc&page=1&timezone=America/New_York&include_null_first_air_dates=false`
-    );
-  } catch (error) {
-    response = error;
-  }
-  return response;
+  return client("java", "recommended-movies");
 }
 
 export async function getRecentMovies(): Promise<unknown> {
-  let response;
-  try {
-    response = await axios.get(
-      `${config.API_BASE_URL}/trending/movie/week?api_key=${config.API_KEY}`
-    );
-  } catch (error) {
-    response = error;
-  }
-  return response;
+  return client("java", "recent-movies");
 }
 
-export async function getCast(emissionType: string, movieId: number): Promise<unknown> {
-  let response;
-  try {
-    response = await axios.get(
-      `${config.API_BASE_URL}/${emissionType}/${movieId}/credits?api_key=${config.API_KEY}&language=en-US`
-    );
-  } catch (error) {
-    response = error;
-  }
-  return response;
+export async function getRatings(movie_id: number): Promise<unknown> {
+  return client("express", `get-rating/${movie_id}`);
+}
+
+export async function createRatings(data: IRatings): Promise<unknown> {
+  return client("express", "create-rating", {
+    body: data
+  });
 }
